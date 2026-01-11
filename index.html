@@ -23,10 +23,10 @@
   <meta name="twitter:title" content="Мне скучно - чем заняться? Генератор идей" />
   <meta name="twitter:description" content="Случайные идеи занятий с режимами: дома, на улице, в интернете, релакс, активность, саморазвитие, хобби." />
 
-  <!-- Fonts -->
+  <!-- Fonts (новый шрифт) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' x='10' font-size='44'%3E%F0%9F%92%A1%3C/text%3E%3C/svg%3E" />
@@ -63,6 +63,7 @@
       --shadow: 0 18px 60px rgba(0,0,0,0.48);
     }
     *{ box-sizing:border-box; }
+
     body{
       margin:0;
       min-height:100vh;
@@ -74,13 +75,13 @@
         radial-gradient(760px 460px at 20% 92%, rgba(124,92,255,0.14), transparent 55%),
         radial-gradient(760px 460px at 90% 82%, rgba(55,198,255,0.10), transparent 60%);
       color: var(--text);
-      font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: "Rubik", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height:1.55;
       text-rendering: optimizeLegibility;
       overflow-x:hidden;
     }
 
-    /* фоновые мягкие огоньки */
+    /* фоновые огоньки */
     .glow{
       position: fixed;
       inset: -15vh -15vw;
@@ -150,13 +151,13 @@
       text-align:center;
     }
 
-    /* Заголовок “Мне скучно” - перелив + свечение */
+    /* Заголовок “Мне скучно!” - перелив */
     h1{
       margin:0;
-      font-family: "Comfortaa", "Manrope", sans-serif;
       font-size: clamp(34px, 4.2vw, 54px);
       letter-spacing: 0.2px;
       line-height:1.05;
+      font-weight: 800;
       background: linear-gradient(90deg, var(--a1), var(--a2), var(--a3), var(--a2), var(--a1));
       background-size: 220% 100%;
       -webkit-background-clip: text;
@@ -197,7 +198,6 @@
       gap: 10px;
     }
 
-    /* сузили кнопку */
     .btnWrap{ display:flex; justify-content:center; }
     button.primary{
       position:relative;
@@ -208,7 +208,10 @@
       font-size: 18px;
       font-weight: 800;
       cursor:pointer;
-      color:#081022;
+
+      /* текст на кнопке белый */
+      color:#ffffff;
+
       background: linear-gradient(135deg, var(--a1), var(--a2));
       box-shadow: 0 18px 54px rgba(55,198,255,0.16);
       transition: transform .12s ease, filter .18s ease, box-shadow .18s ease;
@@ -239,20 +242,29 @@
     button.primary:hover::after{ transform: translateX(42%) rotate(10deg); }
     button.primary:active{ transform: translateY(0) scale(0.99); }
 
-    .resultInput{
+    /* Небольшой гармоничный отступ между кнопкой и полем */
+    .between{ height: 8px; }
+
+    /* Поле результата: textarea чтобы на телефоне всё было видно */
+    .resultBox{
       width: min(560px, 100%);
       margin: 0 auto;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(255,255,255,0.04);
       color: var(--text);
-      padding: 14px 12px;
+      padding: 12px 12px;
       font-size: 16px;
       outline:none;
       text-align:center;
+      line-height: 1.35;
+
+      resize: none;         /* чтобы не тянули руками */
+      overflow: hidden;     /* мы сами авто-расширяем */
+      min-height: 52px;     /* норм на мобилке */
       transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
     }
-    .resultInput::placeholder{ color: rgba(232,238,252,0.55); }
+    .resultBox::placeholder{ color: rgba(232,238,252,0.55); }
 
     /* анимация выпадения */
     .pop{
@@ -417,7 +429,7 @@
       justify-content:center;
       gap: 10px;
       text-decoration:none;
-      font-weight: 850;
+      font-weight: 800;
       font-size: 13px;
       padding: 10px 14px;
       border-radius: 14px;
@@ -501,7 +513,7 @@
     .donateTitle{
       margin:0;
       font-size: 13px;
-      font-weight: 950;
+      font-weight: 900;
       color: rgba(232,238,252,0.95);
     }
     .donateText{
@@ -539,7 +551,7 @@
       align-items:center;
       justify-content:center;
       text-decoration:none;
-      font-weight: 950;
+      font-weight: 900;
       font-size: 12px;
       padding: 10px 12px;
       border-radius: 12px;
@@ -583,7 +595,7 @@
 
   <div class="wrap">
     <header>
-      <h1>Мне скучно</h1>
+      <h1>Мне скучно!</h1>
       <p class="lead">Нажми кнопку и получи случайную идею. Можно выбрать режимы, чтобы было точнее.</p>
     </header>
 
@@ -593,7 +605,18 @@
           <button id="btn" class="primary" type="button">Чем мне заняться?</button>
         </div>
 
-        <input id="resultField" class="resultInput" type="text" placeholder="Тут появится идея..." readonly aria-live="polite" />
+        <div class="between" aria-hidden="true"></div>
+
+        <!-- textarea вместо input: на телефоне видно весь текст -->
+        <textarea
+          id="resultField"
+          class="resultBox"
+          placeholder="Тут появится идея..."
+          readonly
+          rows="2"
+          aria-live="polite"
+        ></textarea>
+
         <p class="hint">Можно нажать <kbd>Enter</kbd> или <kbd>Space</kbd>, когда кнопка в фокусе</p>
       </section>
 
@@ -616,7 +639,7 @@
       <section class="card" aria-label="Предложить идею">
         <div class="panelHead">
           <h2>Предложить свою идею</h2>
-          <p class="subtitle">Форма откроется по ссылке (быстро и аккуратно).</p>
+          <p class="subtitle">Форма откроется по ссылке.</p>
         </div>
         <div class="linkBtnRow">
           <a class="linkBtn" href="https://docs.google.com/forms/d/e/1FAIpQLScC5loEay7_Yi8ha8byhEQbuWMl62xjVuaxTg4GjsO0p2Fubg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
@@ -625,55 +648,30 @@
         </div>
       </section>
 
-      <!-- SEO/текст для индексации -->
       <section class="card" aria-label="Описание и FAQ">
         <div class="panelHead">
           <h2>Идеи, чем заняться, когда скучно</h2>
-          <p class="subtitle">Немного текста для тех, кто попал сюда из поиска - и чтобы сайт лучше индексировался.</p>
+          <p class="subtitle">Немного текста для индексации и для тех, кто пришел из поиска.</p>
         </div>
 
         <div style="display:grid; gap:10px; color: rgba(232,238,252,0.86); font-size:14px;">
           <p>
-            Этот сайт - простой генератор идей, чем заняться, когда скучно. Иногда сложно придумать занятие быстро:
-            хочется и расслабиться, и переключиться, и не тратить много сил. Поэтому здесь есть кнопка, которая выдаёт
-            случайное занятие, а режимы помогают точнее подобрать идею.
+            Этот сайт - генератор идей, чем заняться, когда скучно. Иногда хочется быстро выбрать занятие:
+            дома, на улице или в интернете. Здесь одна кнопка - и сразу готовая идея.
           </p>
           <p>
-            Можно выбрать занятия дома, на улице или в интернете. Также доступны режимы: релакс, активность, творчество,
-            хобби, саморазвитие, без денег и "на 5 минут". Если ты не хочешь идеи про друзей, питомца или вторую половинку,
-            просто не включай эти режимы - тогда такие варианты не выпадут.
+            Режимы помогают сузить варианты. Например, можно выбрать "На 5 минут", "Без денег", "Релакс",
+            "Активность", "Творчество", "Хобби" или "Саморазвитие". Если не включать режимы про друзей, питомца или отношения,
+            такие идеи просто не будут выпадать.
           </p>
           <p>
-            Если ты ищешь "что делать когда скучно", "чем заняться дома", "чем заняться без денег" или "идеи для хобби" -
-            попробуй несколько режимов и нажимай кнопку, пока не попадётся то, что прямо сейчас подходит.
+            Запросы, по которым этот сайт может быть полезен: что делать когда скучно, чем заняться дома,
+            чем заняться вечером, чем заняться без денег, идеи для саморазвития, идеи для хобби, идеи для отдыха.
           </p>
-
-          <details style="border:1px solid rgba(255,255,255,0.10); border-radius:14px; background:rgba(255,255,255,0.03); padding:10px 12px;">
-            <summary style="cursor:pointer; font-weight:800;">Как работают режимы?</summary>
-            <p style="margin:8px 0 0; color: rgba(232,238,252,0.78);">
-              Режимы - это фильтры. Если выбрать "Дома" и "Релакс", то выпадут идеи, которые подходят и дому, и спокойному настроению.
-              Режимы можно сочетать. Кнопка "Сбросить режимы" отключает всё одним нажатием.
-            </p>
-          </details>
-
-          <details style="border:1px solid rgba(255,255,255,0.10); border-radius:14px; background:rgba(255,255,255,0.03); padding:10px 12px;">
-            <summary style="cursor:pointer; font-weight:800;">Почему иногда пишется, что нет идей?</summary>
-            <p style="margin:8px 0 0; color: rgba(232,238,252,0.78);">
-              Если включить слишком много режимов сразу, пересечение может стать пустым. Попробуй выключить один режим
-              или оставь только локацию (например, "В интернете") и один стиль (например, "Саморазвитие").
-            </p>
-          </details>
-
-          <details style="border:1px solid rgba(255,255,255,0.10); border-radius:14px; background:rgba(255,255,255,0.03); padding:10px 12px;">
-            <summary style="cursor:pointer; font-weight:800;">Можно предложить свою идею?</summary>
-            <p style="margin:8px 0 0; color: rgba(232,238,252,0.78);">
-              Да. Нажми "Открыть Google Форму" и отправь идею - автор добавит лучшие варианты в генератор.
-            </p>
-          </details>
         </div>
 
         <p class="muted" style="margin-top:12px;">
-          Подсказка: если хочешь быстро - выбери "На 5 минут". Если хочешь спокойнее - "Релакс". Если хочется пользы - "Саморазвитие".
+          Подсказка: если режимов слишком много, может не остаться подходящих вариантов - тогда сними один режим или нажми "Сбросить режимы".
         </p>
       </section>
     </main>
@@ -721,6 +719,7 @@
     const GATED_TAGS = new Set(["pet", "friends", "couple"]);
     const LOCATION_TAGS = new Set(["home", "outside", "online"]);
 
+    // твоя база идей (можно расширять дальше)
     const IDEAS = [
       { text: "Почитать книгу 15-20 минут", tags: ["home","relax","learn","free"] },
       { text: "Слепить из пластилина что-нибудь смешное", tags: ["home","creative","hobby"] },
@@ -739,7 +738,6 @@
       { text: "Сделать 5 минут дыхания: вдох 4, выдох 6", tags: ["relax","short","free"] },
       { text: "Поставить мини-цель на день и сделать первый шаг", tags: ["learn","short","free"] },
 
-      // gated
       { text: "Поиграть с питомцем 10 минут (мячик или веревочка)", tags: ["pet","active","short"] },
       { text: "Написать другу: 'Как ты?'", tags: ["friends","online","free","short"] },
       { text: "Мини-свидание дома: чай и разговор без телефонов", tags: ["couple","home","relax"] }
@@ -814,6 +812,12 @@
       return fallback.text;
     }
 
+    // авто-высота textarea, чтобы на телефоне было видно весь текст
+    function autoGrow(){
+      resultField.style.height = "auto";
+      resultField.style.height = Math.min(resultField.scrollHeight, 220) + "px";
+    }
+
     function animateResult(){
       resultField.classList.remove("pop");
       void resultField.offsetWidth;
@@ -823,9 +827,9 @@
 
     function showIdea(){
       resultField.value = pickIdea();
+      autoGrow();
       animateResult();
-      resultField.focus();
-      resultField.select();
+      // ВАЖНО: не делаем focus/select -> на телефоне не будет автокопирования/выделения
     }
 
     function resetModes(){
@@ -834,12 +838,16 @@
         b.setAttribute("aria-pressed","false");
       }
       resultField.value = "Режимы сброшены. Нажми кнопку - и получишь случайную идею 🙂";
+      autoGrow();
       animateResult();
     }
 
     renderChips();
     btn.addEventListener("click", showIdea);
     resetBtn.addEventListener("click", resetModes);
+
+    // авто-grow на старте (чтобы было аккуратно)
+    autoGrow();
 
     // Донат-плашка: закрыть и запомнить
     const donateBar = document.getElementById("donateBar");
@@ -853,4 +861,3 @@
   </script>
 </body>
 </html>
-
