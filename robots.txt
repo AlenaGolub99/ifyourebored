@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://alenagolub99.github.io/ifyourebored/sitemap.xml
