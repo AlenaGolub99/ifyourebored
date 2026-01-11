@@ -5,33 +5,37 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="color-scheme" content="dark light" />
 
-  <!-- SEO -->
   <title>Мне скучно - чем заняться? Генератор идей и занятий</title>
   <meta name="description" content="Мне скучно - нажми кнопку и получи случайную идею, чем заняться дома, на улице или в интернете. Режимы: релакс, активность, саморазвитие, творчество, хобби и другие." />
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
   <link rel="canonical" href="https://alenagolub99.github.io/ifyourebored/" />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="ru_RU" />
   <meta property="og:title" content="Мне скучно - генератор идей, чем заняться" />
-  <meta property="og:description" content="Нажми кнопку и получи идею: чем заняться дома, на улице или в интернете. Режимы: релакс, активность, саморазвитие, творчество, хобби и другие." />
+  <meta property="og:description" content="Нажми кнопку и получи идею: чем заняться дома, на улице или в интернете." />
   <meta property="og:url" content="https://alenagolub99.github.io/ifyourebored/" />
 
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Мне скучно - чем заняться? Генератор идей" />
-  <meta name="twitter:description" content="Случайные идеи занятий с режимами: дома, на улице, в интернете, релакс, активность, саморазвитие, хобби." />
+  <meta name="twitter:description" content="Случайные идеи занятий с режимами: дома, на улице, в интернете, релакс, активность и другие." />
 
-  <!-- Fonts (новый шрифт) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' x='10' font-size='44'%3E%F0%9F%92%A1%3C/text%3E%3C/svg%3E" />
 
-  <!-- Structured Data -->
+  <!-- Besom 2 (положи файл в репозиторий: /fonts/Besom2.woff2) -->
+  <style>
+    @font-face{
+      font-family: "Besom2";
+      src:
+        url("./fonts/Besom2.woff2") format("woff2"),
+        url("./fonts/Besom2.woff") format("woff"),
+        url("./fonts/Besom2.ttf") format("truetype");
+      font-display: swap;
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -39,7 +43,7 @@
     "name":"Мне скучно - генератор идей",
     "url":"https://alenagolub99.github.io/ifyourebored/",
     "inLanguage":"ru",
-    "description":"Генератор идей, чем заняться, когда скучно. Режимы: дома, на улице, в интернете, релакс, активность, саморазвитие, хобби, с друзьями и другие.",
+    "description":"Генератор идей, чем заняться, когда скучно. Режимы: дома, на улице, в интернете, релакс, активность, саморазвитие, хобби.",
     "publisher":{
       "@type":"Person",
       "name":"Алена Голубь",
@@ -69,19 +73,21 @@
       min-height:100vh;
       display:grid;
       place-items:center;
-      padding: 28px 14px 92px;
+      padding: 26px 14px 92px;
       background:
         radial-gradient(1100px 560px at 50% 18%, #1a2a55 0%, var(--bg) 56%),
         radial-gradient(760px 460px at 20% 92%, rgba(124,92,255,0.14), transparent 55%),
         radial-gradient(760px 460px at 90% 82%, rgba(55,198,255,0.10), transparent 60%);
       color: var(--text);
-      font-family: "Rubik", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+      /* ВЕЗДЕ Besom 2 */
+      font-family: "Besom2", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+
       line-height:1.55;
       text-rendering: optimizeLegibility;
       overflow-x:hidden;
     }
 
-    /* фоновые огоньки */
     .glow{
       position: fixed;
       inset: -15vh -15vw;
@@ -114,9 +120,8 @@
       50%{ transform: translate3d(18px,-14px,0) scale(1.03); }
     }
 
-    /* сузили сайт */
     .wrap{
-      width: min(720px, 100%);
+      width: min(700px, 100%);
       display:grid;
       gap: 16px;
       position:relative;
@@ -147,17 +152,16 @@
     }
 
     header{
-      padding: 26px 22px 22px;
+      padding: 24px 20px 20px;
       text-align:center;
     }
 
-    /* Заголовок “Мне скучно!” - перелив */
     h1{
       margin:0;
-      font-size: clamp(34px, 4.2vw, 54px);
-      letter-spacing: 0.2px;
+      font-size: clamp(38px, 4.4vw, 58px);
+      letter-spacing: 0.3px;
       line-height:1.05;
-      font-weight: 800;
+      font-weight: 400; /* Besom обычно выглядит лучше не “жирным” */
       background: linear-gradient(90deg, var(--a1), var(--a2), var(--a3), var(--a2), var(--a1));
       background-size: 220% 100%;
       -webkit-background-clip: text;
@@ -176,11 +180,12 @@
     .lead{
       margin: 10px 0 0;
       color: var(--muted);
-      font-size: 14.5px;
+      font-size: 16px;
+      letter-spacing: 0.2px;
     }
 
     main{
-      padding: 20px;
+      padding: 18px;
       display:grid;
       gap: 14px;
     }
@@ -199,27 +204,27 @@
     }
 
     .btnWrap{ display:flex; justify-content:center; }
+
+    /* главная кнопка “ровнее” */
     button.primary{
       position:relative;
       appearance:none;
-      border:0;
-      border-radius: 18px;
-      padding: 18px 22px;
-      font-size: 18px;
-      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 16px 18px;
+      font-size: 20px;
+      letter-spacing: 0.3px;
       cursor:pointer;
 
-      /* текст на кнопке белый */
-      color:#ffffff;
+      color:#ffffff; /* белый текст */
 
       background: linear-gradient(135deg, var(--a1), var(--a2));
-      box-shadow: 0 18px 54px rgba(55,198,255,0.16);
+      box-shadow: 0 14px 40px rgba(55,198,255,0.14);
       transition: transform .12s ease, filter .18s ease, box-shadow .18s ease;
       overflow:hidden;
-      width: min(440px, 100%);
-    }
 
-    /* переливание */
+      width: min(420px, 100%);
+    }
     button.primary::after{
       content:"";
       position:absolute;
@@ -227,7 +232,7 @@
       background: linear-gradient(115deg,
         transparent 0%,
         rgba(255,255,255,0.14) 35%,
-        rgba(255,255,255,0.34) 50%,
+        rgba(255,255,255,0.32) 50%,
         rgba(255,255,255,0.14) 65%,
         transparent 100%);
       transform: translateX(-42%) rotate(10deg);
@@ -237,17 +242,17 @@
     button.primary:hover{
       transform: translateY(-1px);
       filter: brightness(1.03);
-      box-shadow: 0 20px 62px rgba(124,92,255,0.14), 0 20px 62px rgba(55,198,255,0.14);
+      box-shadow: 0 16px 52px rgba(124,92,255,0.14), 0 16px 52px rgba(55,198,255,0.12);
     }
     button.primary:hover::after{ transform: translateX(42%) rotate(10deg); }
     button.primary:active{ transform: translateY(0) scale(0.99); }
 
-    /* Небольшой гармоничный отступ между кнопкой и полем */
-    .between{ height: 8px; }
+    /* небольшой гармоничный отступ */
+    .between{ height: 10px; }
 
-    /* Поле результата: textarea чтобы на телефоне всё было видно */
+    /* Текстбокс сузили */
     .resultBox{
-      width: min(560px, 100%);
+      width: min(420px, 100%);
       margin: 0 auto;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.14);
@@ -259,14 +264,13 @@
       text-align:center;
       line-height: 1.35;
 
-      resize: none;         /* чтобы не тянули руками */
-      overflow: hidden;     /* мы сами авто-расширяем */
-      min-height: 52px;     /* норм на мобилке */
+      resize: none;
+      overflow: hidden;
+      min-height: 46px;
       transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
     }
     .resultBox::placeholder{ color: rgba(232,238,252,0.55); }
 
-    /* анимация выпадения */
     .pop{
       animation: popIn .45s ease-out;
       border-color: rgba(55,198,255,0.40) !important;
@@ -280,12 +284,13 @@
 
     .hint{
       margin: 2px 0 0;
-      font-size: 12px;
+      font-size: 13px;
       color: rgba(232,238,252,0.55);
+      letter-spacing: 0.15px;
     }
     kbd{
       font-family: inherit;
-      font-size: 11px;
+      font-size: 12px;
       padding: 2px 6px;
       border-radius: 6px;
       border: 1px solid rgba(255,255,255,0.18);
@@ -300,61 +305,16 @@
     }
     h2{
       margin:0;
-      font-size: 15px;
-      letter-spacing: .2px;
-      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: .3px;
+      font-weight: 400;
     }
     .subtitle{
       margin:0;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 16px;
+      letter-spacing: 0.2px;
     }
-
-    .rowControls{
-      display:flex;
-      justify-content:center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 2px;
-    }
-
-    .miniBtn{
-      position: relative;
-      appearance:none;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.05);
-      color: rgba(232,238,252,0.92);
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 13px;
-      font-weight: 800;
-      cursor:pointer;
-      overflow:hidden;
-      transition: transform .12s ease, filter .18s ease, border-color .18s ease, background .18s ease;
-    }
-    .miniBtn::after{
-      content:"";
-      position:absolute;
-      inset: -70% -40%;
-      background: linear-gradient(120deg,
-        transparent 0%,
-        rgba(255,255,255,0.10) 35%,
-        rgba(255,255,255,0.22) 50%,
-        rgba(255,255,255,0.10) 65%,
-        transparent 100%);
-      transform: translateX(-55%) rotate(12deg);
-      transition: transform .55s ease;
-      pointer-events:none;
-      opacity: 0.9;
-    }
-    .miniBtn:hover{
-      transform: translateY(-1px);
-      filter: brightness(1.04);
-      border-color: rgba(55,198,255,0.34);
-      background: rgba(255,255,255,0.06);
-    }
-    .miniBtn:hover::after{ transform: translateX(55%) rotate(12deg); }
-    .miniBtn:active{ transform: translateY(0) scale(0.99); }
 
     .chips{
       display:flex;
@@ -362,26 +322,34 @@
       gap: 8px;
       justify-content:center;
       align-items:center;
+      margin-top: 8px;
     }
+
+    /* разноцветные теги */
     .chip{
+      --c1: rgba(255,255,255,0.08);
+      --c2: rgba(255,255,255,0.04);
+
       position: relative;
       user-select:none;
       cursor:pointer;
       border-radius: 999px;
-      padding: 8px 12px;
+      padding: 9px 12px;
       border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04);
-      color: rgba(232,238,252,0.92);
-      font-size: 13px;
-      font-weight: 800;
+      background: linear-gradient(135deg, var(--c1), var(--c2));
+      color: rgba(255,255,255,0.95);
+      font-size: 15px;
+      letter-spacing: 0.2px;
+      font-weight: 400;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      transition: transform .12s ease, border-color .18s ease, background .18s ease, filter .18s ease;
+      transition: transform .12s ease, border-color .18s ease, filter .18s ease;
       overflow:hidden;
       white-space: nowrap;
       max-width: 100%;
     }
+
     .chip::after{
       content:"";
       position:absolute;
@@ -395,26 +363,71 @@
       transform: translateX(-55%) rotate(12deg);
       transition: transform .55s ease;
       pointer-events:none;
-      opacity: 0.9;
-    }
-    .chip:hover{
-      transform: translateY(-1px);
-      filter: brightness(1.03);
-      border-color: rgba(55,198,255,0.34);
-      background: rgba(255,255,255,0.05);
-    }
-    .chip:hover::after{ transform: translateX(55%) rotate(12deg); }
-    .chip[aria-pressed="true"]{
-      border-color: rgba(55,198,255,0.50);
-      background: linear-gradient(135deg, rgba(124,92,255,0.18), rgba(55,198,255,0.14));
+      opacity: 0.85;
     }
 
+    .chip:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      border-color: rgba(255,255,255,0.22);
+    }
+    .chip:hover::after{ transform: translateX(55%) rotate(12deg); }
+
+    .chip[aria-pressed="true"]{
+      border-color: rgba(255,255,255,0.38);
+      filter: brightness(1.10);
+    }
+
+    /* красная кнопка сброса (внизу режимов) */
+    .resetRow{
+      display:flex;
+      justify-content:center;
+      margin-top: 12px;
+    }
+    .resetBtn{
+      position: relative;
+      appearance:none;
+      cursor:pointer;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-size: 15px;
+      letter-spacing: 0.2px;
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: linear-gradient(135deg, rgba(255,74,74,0.95), rgba(255,130,130,0.70));
+      box-shadow: 0 14px 40px rgba(255,74,74,0.16);
+      overflow:hidden;
+      transition: transform .12s ease, filter .18s ease, box-shadow .18s ease;
+    }
+    .resetBtn::after{
+      content:"";
+      position:absolute;
+      inset: -70% -40%;
+      background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(255,255,255,0.12) 35%,
+        rgba(255,255,255,0.24) 50%,
+        rgba(255,255,255,0.12) 65%,
+        transparent 100%);
+      transform: translateX(-55%) rotate(12deg);
+      transition: transform .55s ease;
+      pointer-events:none;
+    }
+    .resetBtn:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+      box-shadow: 0 16px 52px rgba(255,74,74,0.20);
+    }
+    .resetBtn:hover::after{ transform: translateX(55%) rotate(12deg); }
+    .resetBtn:active{ transform: translateY(0) scale(0.99); }
+
     .muted{
-      margin: 10px 0 0;
+      margin: 12px 0 0;
       color: rgba(232,238,252,0.62);
-      font-size: 12px;
+      font-size: 14px;
       text-align:center;
       line-height: 1.4;
+      letter-spacing: 0.15px;
     }
 
     .linkBtnRow{
@@ -429,8 +442,8 @@
       justify-content:center;
       gap: 10px;
       text-decoration:none;
-      font-weight: 800;
-      font-size: 13px;
+      font-size: 15px;
+      letter-spacing: 0.2px;
       padding: 10px 14px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.14);
@@ -466,7 +479,8 @@
       padding: 14px 18px;
       text-align:center;
       color: rgba(232,238,252,0.6);
-      font-size: 12px;
+      font-size: 14px;
+      letter-spacing: 0.15px;
     }
     footer a{
       color: rgba(55,198,255,0.95);
@@ -474,7 +488,6 @@
       border-bottom: 1px dashed rgba(55,198,255,0.5);
     }
 
-    /* Донат-плашка: только Boosty */
     .donateBar{
       position: fixed;
       right: 14px;
@@ -510,18 +523,8 @@
       position: relative;
       z-index: 1;
     }
-    .donateTitle{
-      margin:0;
-      font-size: 13px;
-      font-weight: 900;
-      color: rgba(232,238,252,0.95);
-    }
-    .donateText{
-      margin: 4px 0 0;
-      font-size: 12px;
-      color: rgba(232,238,252,0.70);
-      line-height: 1.35;
-    }
+    .donateTitle{ margin:0; font-size: 16px; letter-spacing: .2px; font-weight: 400; }
+    .donateText{ margin: 4px 0 0; font-size: 14px; color: rgba(232,238,252,0.70); line-height: 1.35; letter-spacing: .15px; }
     .donateClose{
       appearance:none;
       border:0;
@@ -531,7 +534,7 @@
       height: 32px;
       border-radius: 10px;
       cursor:pointer;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 32px;
       text-align:center;
     }
@@ -551,8 +554,8 @@
       align-items:center;
       justify-content:center;
       text-decoration:none;
-      font-weight: 900;
-      font-size: 12px;
+      font-size: 14px;
+      letter-spacing: 0.2px;
       padding: 10px 12px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.14);
@@ -577,12 +580,7 @@
     }
     .boostyBtn:hover::after{ transform: translateX(55%) rotate(12deg); }
     .boostyBtn:hover{ filter: brightness(1.05); }
-    .buyText{
-      color: rgba(232,238,252,0.72);
-      font-size: 12px;
-      font-weight: 700;
-      white-space: nowrap;
-    }
+    .buyText{ color: rgba(232,238,252,0.72); font-size: 14px; letter-spacing: .15px; white-space: nowrap; }
   </style>
 </head>
 
@@ -607,7 +605,6 @@
 
         <div class="between" aria-hidden="true"></div>
 
-        <!-- textarea вместо input: на телефоне видно весь текст -->
         <textarea
           id="resultField"
           class="resultBox"
@@ -624,15 +621,18 @@
         <div class="panelHead">
           <h2>Режимы</h2>
           <p class="subtitle">Выбери режимы (по желанию) и нажми кнопку - выпадет случайное занятие.</p>
-          <div class="rowControls">
-            <button id="resetBtn" class="miniBtn" type="button">Сбросить режимы</button>
-          </div>
         </div>
 
         <div id="chips" class="chips" role="group" aria-label="Режимы (фильтры)"></div>
 
+        <!-- СБРОС внизу -->
+        <div class="resetRow">
+          <button id="resetBtn" class="resetBtn" type="button">Сбросить режимы</button>
+        </div>
+
         <p class="muted">
           Идеи "С питомцем", "С друзьями", "Со второй половинкой" показываются только если выбран этот режим.
+          Режимы "На улице" и "В интернете" - взаимоисключающие.
         </p>
       </section>
 
@@ -651,28 +651,23 @@
       <section class="card" aria-label="Описание и FAQ">
         <div class="panelHead">
           <h2>Идеи, чем заняться, когда скучно</h2>
-          <p class="subtitle">Немного текста для индексации и для тех, кто пришел из поиска.</p>
+          <p class="subtitle">Текст для индексации и для тех, кто пришел из поиска.</p>
         </div>
 
-        <div style="display:grid; gap:10px; color: rgba(232,238,252,0.86); font-size:14px;">
+        <div style="display:grid; gap:10px; color: rgba(232,238,252,0.86); font-size:16px; letter-spacing:.15px;">
           <p>
-            Этот сайт - генератор идей, чем заняться, когда скучно. Иногда хочется быстро выбрать занятие:
-            дома, на улице или в интернете. Здесь одна кнопка - и сразу готовая идея.
+            Этот сайт помогает быстро придумать, чем заняться, когда скучно. Он полезен, если ты ищешь идеи для дома, прогулки,
+            занятий в интернете, коротких дел "на 5 минут", а также вариантов для релакса, активности, творчества, хобби и саморазвития.
           </p>
           <p>
-            Режимы помогают сузить варианты. Например, можно выбрать "На 5 минут", "Без денег", "Релакс",
-            "Активность", "Творчество", "Хобби" или "Саморазвитие". Если не включать режимы про друзей, питомца или отношения,
-            такие идеи просто не будут выпадать.
+            Режимы работают как фильтры. Можно сочетать: например, "Дома" + "Релакс" или "На улице" + "Активность".
+            Если включено слишком много режимов и идей не осталось, сними один фильтр или нажми "Сбросить режимы".
           </p>
           <p>
-            Запросы, по которым этот сайт может быть полезен: что делать когда скучно, чем заняться дома,
-            чем заняться вечером, чем заняться без денег, идеи для саморазвития, идеи для хобби, идеи для отдыха.
+            Частые запросы: что делать когда скучно, чем заняться дома, чем заняться без денег, идеи для хобби,
+            идеи для саморазвития, идеи для отдыха, чем заняться вечером.
           </p>
         </div>
-
-        <p class="muted" style="margin-top:12px;">
-          Подсказка: если режимов слишком много, может не остаться подходящих вариантов - тогда сними один режим или нажми "Сбросить режимы".
-        </p>
       </section>
     </main>
 
@@ -681,7 +676,6 @@
     </footer>
   </div>
 
-  <!-- Донат-плашка: только Boosty -->
   <aside id="donateBar" class="donateBar" aria-label="Поддержать автора">
     <div class="donateTop">
       <div>
@@ -699,165 +693,17 @@
 
   <script>
     const TAGS = [
-      { id: "home",     label: "Дома" },
-      { id: "outside",  label: "На улице" },
-      { id: "online",   label: "В интернете" },
+      { id: "home",     label: "Дома",               c1: "rgba(124,92,255,0.35)", c2: "rgba(124,92,255,0.10)" },
+      { id: "outside",  label: "На улице",           c1: "rgba(88,255,163,0.32)", c2: "rgba(88,255,163,0.10)" },
+      { id: "online",   label: "В интернете",        c1: "rgba(55,198,255,0.34)", c2: "rgba(55,198,255,0.10)" },
 
-      { id: "short",    label: "На 5 минут" },
-      { id: "free",     label: "Без денег" },
-      { id: "creative", label: "Творчество" },
-      { id: "active",   label: "Активность" },
-      { id: "relax",    label: "Релакс" },
-      { id: "learn",    label: "Саморазвитие" },
-      { id: "hobby",    label: "Хобби" },
+      { id: "short",    label: "На 5 минут",         c1: "rgba(255,214,102,0.32)", c2: "rgba(255,214,102,0.10)" },
+      { id: "free",     label: "Без денег",          c1: "rgba(255,125,246,0.28)", c2: "rgba(255,125,246,0.10)" },
+      { id: "creative", label: "Творчество",          c1: "rgba(255,140,60,0.30)",  c2: "rgba(255,140,60,0.10)" },
+      { id: "active",   label: "Активность",         c1: "rgba(255,74,74,0.26)",   c2: "rgba(255,74,74,0.10)" },
+      { id: "relax",    label: "Релакс",             c1: "rgba(160,160,255,0.26)", c2: "rgba(160,160,255,0.10)" },
+      { id: "learn",    label: "Саморазвитие",       c1: "rgba(90,210,255,0.26)",  c2: "rgba(90,210,255,0.10)" },
+      { id: "hobby",    label: "Хобби",              c1: "rgba(180,255,120,0.24)", c2: "rgba(180,255,120,0.10)" },
 
-      { id: "friends",  label: "С друзьями" },
-      { id: "couple",   label: "Со второй половинкой" },
-      { id: "pet",      label: "С питомцем" }
-    ];
-
-    const GATED_TAGS = new Set(["pet", "friends", "couple"]);
-    const LOCATION_TAGS = new Set(["home", "outside", "online"]);
-
-    // твоя база идей (можно расширять дальше)
-    const IDEAS = [
-      { text: "Почитать книгу 15-20 минут", tags: ["home","relax","learn","free"] },
-      { text: "Слепить из пластилина что-нибудь смешное", tags: ["home","creative","hobby"] },
-      { text: "Нарисовать 5-минутный скетч", tags: ["home","short","creative","free","hobby"] },
-      { text: "Навести порядок на одном участке (стол или полка)", tags: ["home","short","free"] },
-      { text: "Сделать чай или какао и устроить уютную паузу", tags: ["home","relax"] },
-      { text: "Сделать растяжку 7 минут", tags: ["home","active","short","free"] },
-
-      { text: "Прогуляться 10-15 минут", tags: ["outside","active","free","short"] },
-      { text: "Найти 5 красивых деталей вокруг (мини-квест)", tags: ["outside","relax","free","short"] },
-
-      { text: "Посмотреть короткий документальный ролик", tags: ["online","relax","learn","free"] },
-      { text: "Послушать подкаст на интересную тему", tags: ["online","relax","learn","free"] },
-      { text: "Сыграть в короткую игру в браузере", tags: ["online","relax","short"] },
-
-      { text: "Сделать 5 минут дыхания: вдох 4, выдох 6", tags: ["relax","short","free"] },
-      { text: "Поставить мини-цель на день и сделать первый шаг", tags: ["learn","short","free"] },
-
-      { text: "Поиграть с питомцем 10 минут (мячик или веревочка)", tags: ["pet","active","short"] },
-      { text: "Написать другу: 'Как ты?'", tags: ["friends","online","free","short"] },
-      { text: "Мини-свидание дома: чай и разговор без телефонов", tags: ["couple","home","relax"] }
-    ];
-
-    const chipsWrap = document.getElementById("chips");
-    const btn = document.getElementById("btn");
-    const resetBtn = document.getElementById("resetBtn");
-    const resultField = document.getElementById("resultField");
-
-    const activeTagSet = new Set();
-    let lastText = "";
-
-    function renderChips(){
-      chipsWrap.innerHTML = "";
-      for (const t of TAGS){
-        const el = document.createElement("button");
-        el.type = "button";
-        el.className = "chip";
-        el.textContent = t.label;
-        el.setAttribute("aria-pressed", activeTagSet.has(t.id) ? "true" : "false");
-
-        el.addEventListener("click", () => {
-          if (activeTagSet.has(t.id)) activeTagSet.delete(t.id);
-          else activeTagSet.add(t.id);
-          el.setAttribute("aria-pressed", activeTagSet.has(t.id) ? "true" : "false");
-        });
-
-        chipsWrap.appendChild(el);
-      }
-    }
-
-    function matchesFilters(idea){
-      const tags = idea.tags || [];
-
-      for (const gated of GATED_TAGS){
-        if (tags.includes(gated) && !activeTagSet.has(gated)) return false;
-      }
-
-      const chosenLocations = [...activeTagSet].filter(t => LOCATION_TAGS.has(t));
-      if (chosenLocations.length > 0){
-        const ok = chosenLocations.some(loc => tags.includes(loc));
-        if (!ok) return false;
-      }
-
-      for (const t of activeTagSet){
-        if (LOCATION_TAGS.has(t)) continue;
-        if (!tags.includes(t)) return false;
-      }
-
-      return true;
-    }
-
-    function pickIdea(){
-      const pool = IDEAS.filter(matchesFilters);
-      if (pool.length === 0){
-        return "Нет идей под выбранные режимы. Попробуй снять один режим.";
-      }
-
-      let tries = 0;
-      while (tries < 12){
-        const item = pool[Math.floor(Math.random() * pool.length)];
-        if (pool.length === 1 || item.text !== lastText){
-          lastText = item.text;
-          return item.text;
-        }
-        tries++;
-      }
-
-      const fallback = pool[Math.floor(Math.random() * pool.length)];
-      lastText = fallback.text;
-      return fallback.text;
-    }
-
-    // авто-высота textarea, чтобы на телефоне было видно весь текст
-    function autoGrow(){
-      resultField.style.height = "auto";
-      resultField.style.height = Math.min(resultField.scrollHeight, 220) + "px";
-    }
-
-    function animateResult(){
-      resultField.classList.remove("pop");
-      void resultField.offsetWidth;
-      resultField.classList.add("pop");
-      window.setTimeout(() => resultField.classList.remove("pop"), 520);
-    }
-
-    function showIdea(){
-      resultField.value = pickIdea();
-      autoGrow();
-      animateResult();
-      // ВАЖНО: не делаем focus/select -> на телефоне не будет автокопирования/выделения
-    }
-
-    function resetModes(){
-      activeTagSet.clear();
-      for (const b of chipsWrap.querySelectorAll(".chip")){
-        b.setAttribute("aria-pressed","false");
-      }
-      resultField.value = "Режимы сброшены. Нажми кнопку - и получишь случайную идею 🙂";
-      autoGrow();
-      animateResult();
-    }
-
-    renderChips();
-    btn.addEventListener("click", showIdea);
-    resetBtn.addEventListener("click", resetModes);
-
-    // авто-grow на старте (чтобы было аккуратно)
-    autoGrow();
-
-    // Донат-плашка: закрыть и запомнить
-    const donateBar = document.getElementById("donateBar");
-    const donateClose = document.getElementById("donateClose");
-    const DONATE_LS_KEY = "donate_bar_closed_v1";
-    if (localStorage.getItem(DONATE_LS_KEY) === "1") donateBar.style.display = "none";
-    donateClose.addEventListener("click", () => {
-      donateBar.style.display = "none";
-      localStorage.setItem(DONATE_LS_KEY, "1");
-    });
-  </script>
-</body>
-</html>
+      { id: "friends",  label: "С друзьями",         c1: "rgba(255,110,180,0.26)", c2: "rgba(255,110,180,0.10)" },
+      { id: "couple"
