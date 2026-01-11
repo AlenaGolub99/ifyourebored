@@ -22,14 +22,11 @@
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' x='10' font-size='44'%3E%F0%9F%92%A1%3C/text%3E%3C/svg%3E" />
 
-  <!-- Besom 2 (положи файл в репозиторий: /fonts/Besom2.woff2) -->
+  <!-- Besom 2 TTF: положи файл сюда: /fonts/Besom2.ttf -->
   <style>
     @font-face{
       font-family: "Besom2";
-      src:
-        url("./fonts/Besom2.woff2") format("woff2"),
-        url("./fonts/Besom2.woff") format("woff"),
-        url("./fonts/Besom2.ttf") format("truetype");
+      src: url("./fonts/Besom2.ttf") format("truetype");
       font-display: swap;
       font-weight: 400;
       font-style: normal;
@@ -86,6 +83,11 @@
       line-height:1.55;
       text-rendering: optimizeLegibility;
       overflow-x:hidden;
+    }
+
+    /* Besom часто “крупный” — чуть нормализуем читаемость */
+    body, button, input, textarea{
+      letter-spacing: 0.2px;
     }
 
     .glow{
@@ -158,10 +160,9 @@
 
     h1{
       margin:0;
-      font-size: clamp(38px, 4.4vw, 58px);
-      letter-spacing: 0.3px;
-      line-height:1.05;
-      font-weight: 400; /* Besom обычно выглядит лучше не “жирным” */
+      font-size: clamp(42px, 4.6vw, 62px);
+      line-height:1.03;
+      font-weight: 400;
       background: linear-gradient(90deg, var(--a1), var(--a2), var(--a3), var(--a2), var(--a1));
       background-size: 220% 100%;
       -webkit-background-clip: text;
@@ -181,7 +182,6 @@
       margin: 10px 0 0;
       color: var(--muted);
       font-size: 16px;
-      letter-spacing: 0.2px;
     }
 
     main{
@@ -205,7 +205,6 @@
 
     .btnWrap{ display:flex; justify-content:center; }
 
-    /* главная кнопка “ровнее” */
     button.primary{
       position:relative;
       appearance:none;
@@ -213,16 +212,12 @@
       border-radius: 16px;
       padding: 16px 18px;
       font-size: 20px;
-      letter-spacing: 0.3px;
       cursor:pointer;
-
-      color:#ffffff; /* белый текст */
-
+      color:#ffffff;
       background: linear-gradient(135deg, var(--a1), var(--a2));
       box-shadow: 0 14px 40px rgba(55,198,255,0.14);
       transition: transform .12s ease, filter .18s ease, box-shadow .18s ease;
       overflow:hidden;
-
       width: min(420px, 100%);
     }
     button.primary::after{
@@ -247,10 +242,8 @@
     button.primary:hover::after{ transform: translateX(42%) rotate(10deg); }
     button.primary:active{ transform: translateY(0) scale(0.99); }
 
-    /* небольшой гармоничный отступ */
     .between{ height: 10px; }
 
-    /* Текстбокс сузили */
     .resultBox{
       width: min(420px, 100%);
       margin: 0 auto;
@@ -263,7 +256,6 @@
       outline:none;
       text-align:center;
       line-height: 1.35;
-
       resize: none;
       overflow: hidden;
       min-height: 46px;
@@ -286,7 +278,6 @@
       margin: 2px 0 0;
       font-size: 13px;
       color: rgba(232,238,252,0.55);
-      letter-spacing: 0.15px;
     }
     kbd{
       font-family: inherit;
@@ -306,14 +297,12 @@
     h2{
       margin:0;
       font-size: 18px;
-      letter-spacing: .3px;
       font-weight: 400;
     }
     .subtitle{
       margin:0;
       color: var(--muted);
       font-size: 16px;
-      letter-spacing: 0.2px;
     }
 
     .chips{
@@ -325,7 +314,6 @@
       margin-top: 8px;
     }
 
-    /* разноцветные теги */
     .chip{
       --c1: rgba(255,255,255,0.08);
       --c2: rgba(255,255,255,0.04);
@@ -339,7 +327,6 @@
       background: linear-gradient(135deg, var(--c1), var(--c2));
       color: rgba(255,255,255,0.95);
       font-size: 15px;
-      letter-spacing: 0.2px;
       font-weight: 400;
       display:inline-flex;
       align-items:center;
@@ -378,7 +365,6 @@
       filter: brightness(1.10);
     }
 
-    /* красная кнопка сброса (внизу режимов) */
     .resetRow{
       display:flex;
       justify-content:center;
@@ -391,7 +377,6 @@
       border-radius: 14px;
       padding: 10px 14px;
       font-size: 15px;
-      letter-spacing: 0.2px;
       color: #fff;
       border: 1px solid rgba(255,255,255,0.16);
       background: linear-gradient(135deg, rgba(255,74,74,0.95), rgba(255,130,130,0.70));
@@ -427,7 +412,6 @@
       font-size: 14px;
       text-align:center;
       line-height: 1.4;
-      letter-spacing: 0.15px;
     }
 
     .linkBtnRow{
@@ -443,7 +427,6 @@
       gap: 10px;
       text-decoration:none;
       font-size: 15px;
-      letter-spacing: 0.2px;
       padding: 10px 14px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.14);
@@ -480,7 +463,6 @@
       text-align:center;
       color: rgba(232,238,252,0.6);
       font-size: 14px;
-      letter-spacing: 0.15px;
     }
     footer a{
       color: rgba(55,198,255,0.95);
@@ -523,8 +505,8 @@
       position: relative;
       z-index: 1;
     }
-    .donateTitle{ margin:0; font-size: 16px; letter-spacing: .2px; font-weight: 400; }
-    .donateText{ margin: 4px 0 0; font-size: 14px; color: rgba(232,238,252,0.70); line-height: 1.35; letter-spacing: .15px; }
+    .donateTitle{ margin:0; font-size: 16px; font-weight: 400; }
+    .donateText{ margin: 4px 0 0; font-size: 14px; color: rgba(232,238,252,0.70); line-height: 1.35; }
     .donateClose{
       appearance:none;
       border:0;
@@ -555,7 +537,6 @@
       justify-content:center;
       text-decoration:none;
       font-size: 14px;
-      letter-spacing: 0.2px;
       padding: 10px 12px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.14);
@@ -580,7 +561,7 @@
     }
     .boostyBtn:hover::after{ transform: translateX(55%) rotate(12deg); }
     .boostyBtn:hover{ filter: brightness(1.05); }
-    .buyText{ color: rgba(232,238,252,0.72); font-size: 14px; letter-spacing: .15px; white-space: nowrap; }
+    .buyText{ color: rgba(232,238,252,0.72); font-size: 14px; white-space: nowrap; }
   </style>
 </head>
 
@@ -625,7 +606,6 @@
 
         <div id="chips" class="chips" role="group" aria-label="Режимы (фильтры)"></div>
 
-        <!-- СБРОС внизу -->
         <div class="resetRow">
           <button id="resetBtn" class="resetBtn" type="button">Сбросить режимы</button>
         </div>
@@ -654,7 +634,7 @@
           <p class="subtitle">Текст для индексации и для тех, кто пришел из поиска.</p>
         </div>
 
-        <div style="display:grid; gap:10px; color: rgba(232,238,252,0.86); font-size:16px; letter-spacing:.15px;">
+        <div style="display:grid; gap:10px; color: rgba(232,238,252,0.86); font-size:16px;">
           <p>
             Этот сайт помогает быстро придумать, чем заняться, когда скучно. Он полезен, если ты ищешь идеи для дома, прогулки,
             занятий в интернете, коротких дел "на 5 минут", а также вариантов для релакса, активности, творчества, хобби и саморазвития.
@@ -706,4 +686,175 @@
       { id: "hobby",    label: "Хобби",              c1: "rgba(180,255,120,0.24)", c2: "rgba(180,255,120,0.10)" },
 
       { id: "friends",  label: "С друзьями",         c1: "rgba(255,110,180,0.26)", c2: "rgba(255,110,180,0.10)" },
-      { id: "couple"
+      { id: "couple",   label: "Со второй половинкой", c1: "rgba(255,160,110,0.26)", c2: "rgba(255,160,110,0.10)" },
+      { id: "pet",      label: "С питомцем",         c1: "rgba(140,220,160,0.24)", c2: "rgba(140,220,160,0.10)" }
+    ];
+
+    const GATED_TAGS = new Set(["pet", "friends", "couple"]);
+    const LOCATION_TAGS = new Set(["home", "outside", "online"]);
+
+    // взаимоисключение: outside <-> online
+    const MUTUAL_EXCLUSIVE = {
+      outside: new Set(["online"]),
+      online: new Set(["outside"])
+    };
+
+    const IDEAS = [
+      { text: "Почитать книгу 15-20 минут", tags: ["home","relax","learn","free"] },
+      { text: "Слепить из пластилина что-нибудь смешное", tags: ["home","creative","hobby"] },
+      { text: "Нарисовать 5-минутный скетч", tags: ["home","short","creative","free","hobby"] },
+      { text: "Навести порядок на одном участке (стол или полка)", tags: ["home","short","free"] },
+      { text: "Сделать чай или какао и устроить уютную паузу", tags: ["home","relax"] },
+      { text: "Сделать растяжку 7 минут", tags: ["home","active","short","free"] },
+
+      { text: "Прогуляться 10-15 минут", tags: ["outside","active","free","short"] },
+      { text: "Найти 5 красивых деталей вокруг (мини-квест)", tags: ["outside","relax","free","short"] },
+
+      { text: "Посмотреть короткий документальный ролик", tags: ["online","relax","learn","free"] },
+      { text: "Послушать подкаст на интересную тему", tags: ["online","relax","learn","free"] },
+      { text: "Сыграть в короткую игру в браузере", tags: ["online","relax","short"] },
+
+      { text: "Сделать 5 минут дыхания: вдох 4, выдох 6", tags: ["relax","short","free"] },
+      { text: "Поставить мини-цель на день и сделать первый шаг", tags: ["learn","short","free"] },
+
+      { text: "Поиграть с питомцем 10 минут (мячик или веревочка)", tags: ["pet","active","short"] },
+      { text: "Написать другу: 'Как ты?'", tags: ["friends","online","free","short"] },
+      { text: "Мини-свидание дома: чай и разговор без телефонов", tags: ["couple","home","relax"] }
+    ];
+
+    const chipsWrap = document.getElementById("chips");
+    const btn = document.getElementById("btn");
+    const resetBtn = document.getElementById("resetBtn");
+    const resultField = document.getElementById("resultField");
+
+    const activeTagSet = new Set();
+    let lastText = "";
+
+    function setChipPressed(el, pressed){
+      el.setAttribute("aria-pressed", pressed ? "true" : "false");
+    }
+
+    function renderChips(){
+      chipsWrap.innerHTML = "";
+      for (const t of TAGS){
+        const el = document.createElement("button");
+        el.type = "button";
+        el.className = "chip";
+        el.textContent = t.label;
+        el.dataset.tagId = t.id;
+
+        el.style.setProperty("--c1", t.c1);
+        el.style.setProperty("--c2", t.c2);
+
+        setChipPressed(el, activeTagSet.has(t.id));
+
+        el.addEventListener("click", () => {
+          const turningOn = !activeTagSet.has(t.id);
+
+          if (turningOn) {
+            const excl = MUTUAL_EXCLUSIVE[t.id];
+            if (excl){
+              for (const x of excl){
+                activeTagSet.delete(x);
+                const other = chipsWrap.querySelector(`.chip[data-tag-id="${x}"]`);
+                if (other) setChipPressed(other, false);
+              }
+            }
+            activeTagSet.add(t.id);
+            setChipPressed(el, true);
+          } else {
+            activeTagSet.delete(t.id);
+            setChipPressed(el, false);
+          }
+        });
+
+        chipsWrap.appendChild(el);
+      }
+    }
+
+    function matchesFilters(idea){
+      const tags = idea.tags || [];
+
+      for (const gated of GATED_TAGS){
+        if (tags.includes(gated) && !activeTagSet.has(gated)) return false;
+      }
+
+      const chosenLocations = [...activeTagSet].filter(t => LOCATION_TAGS.has(t));
+      if (chosenLocations.length > 0){
+        const ok = chosenLocations.some(loc => tags.includes(loc));
+        if (!ok) return false;
+      }
+
+      for (const t of activeTagSet){
+        if (LOCATION_TAGS.has(t)) continue;
+        if (!tags.includes(t)) return false;
+      }
+
+      return true;
+    }
+
+    function pickIdea(){
+      const pool = IDEAS.filter(matchesFilters);
+      if (pool.length === 0){
+        return "Нет идей под выбранные режимы. Попробуй снять один режим.";
+      }
+      let tries = 0;
+      while (tries < 12){
+        const item = pool[Math.floor(Math.random() * pool.length)];
+        if (pool.length === 1 || item.text !== lastText){
+          lastText = item.text;
+          return item.text;
+        }
+        tries++;
+      }
+      const fallback = pool[Math.floor(Math.random() * pool.length)];
+      lastText = fallback.text;
+      return fallback.text;
+    }
+
+    function autoGrow(){
+      resultField.style.height = "auto";
+      resultField.style.height = Math.min(resultField.scrollHeight, 220) + "px";
+    }
+
+    function animateResult(){
+      resultField.classList.remove("pop");
+      void resultField.offsetWidth;
+      resultField.classList.add("pop");
+      window.setTimeout(() => resultField.classList.remove("pop"), 520);
+    }
+
+    function showIdea(){
+      resultField.value = pickIdea();
+      autoGrow();
+      animateResult();
+      // не делаем focus/select -> не копируется на телефоне
+    }
+
+    function resetModes(){
+      activeTagSet.clear();
+      for (const b of chipsWrap.querySelectorAll(".chip")){
+        setChipPressed(b, false);
+      }
+      resultField.value = "Режимы сброшены. Нажми кнопку - и получишь случайную идею 🙂";
+      autoGrow();
+      animateResult();
+    }
+
+    renderChips();
+    btn.addEventListener("click", showIdea);
+    resetBtn.addEventListener("click", resetModes);
+
+    autoGrow();
+
+    const donateBar = document.getElementById("donateBar");
+    const donateClose = document.getElementById("donateClose");
+    const DONATE_LS_KEY = "donate_bar_closed_v1";
+    if (localStorage.getItem(DONATE_LS_KEY) === "1") donateBar.style.display = "none";
+    donateClose.addEventListener("click", () => {
+      donateBar.style.display = "none";
+      localStorage.setItem(DONATE_LS_KEY, "1");
+    });
+  </script>
+</body>
+</html>
