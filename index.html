@@ -23,6 +23,11 @@
   <meta name="twitter:title" content="Мне скучно - чем заняться? Генератор идей" />
   <meta name="twitter:description" content="Случайные идеи занятий с режимами: дома, на улице, в интернете, релакс, активность, саморазвитие, хобби." />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
   <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' x='10' font-size='44'%3E%F0%9F%92%A1%3C/text%3E%3C/svg%3E" />
 
@@ -47,166 +52,168 @@
     :root{
       --bg:#0b1220;
       --card:#101a33;
-      --text:#e8eefc;
-      --muted:#a8b3d6;
+      --text:#eaf0ff;
+      --muted:#a9b6dd;
+      --line: rgba(255,255,255,0.10);
 
-      --line: rgba(255,255,255,0.09);
+      --a1:#7c5cff;
+      --a2:#37c6ff;
+      --a3:#58ffa3;
 
-      --accent1: #7c5cff;
-      --accent2: #37c6ff;
-      --accent3: #58ffa3;
-
-      --shadow: 0 18px 60px rgba(0,0,0,0.45);
+      --shadow: 0 18px 60px rgba(0,0,0,0.48);
     }
-    * { box-sizing: border-box; }
-
+    *{ box-sizing:border-box; }
     body{
       margin:0;
       min-height:100vh;
       display:grid;
       place-items:center;
-      padding: 34px 16px 94px; /* запас под донат-плашку */
+      padding: 28px 14px 92px;
       background:
-        radial-gradient(1200px 600px at 50% 20%, #1a2a55 0%, var(--bg) 55%),
-        radial-gradient(900px 500px at 20% 90%, rgba(124,92,255,0.18), transparent 55%),
-        radial-gradient(900px 500px at 90% 80%, rgba(55,198,255,0.14), transparent 60%);
+        radial-gradient(1100px 560px at 50% 18%, #1a2a55 0%, var(--bg) 56%),
+        radial-gradient(760px 460px at 20% 92%, rgba(124,92,255,0.14), transparent 55%),
+        radial-gradient(760px 460px at 90% 82%, rgba(55,198,255,0.10), transparent 60%);
       color: var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height: 1.5;
+      font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.55;
       text-rendering: optimizeLegibility;
       overflow-x:hidden;
     }
 
-    /* нежные фоновые “орбы” */
-    .bgOrbs{
+    /* фоновые мягкие огоньки */
+    .glow{
       position: fixed;
-      inset: -20vh -20vw;
-      pointer-events: none;
-      z-index: 0;
-      filter: blur(42px);
-      opacity: 0.45;
+      inset: -15vh -15vw;
+      pointer-events:none;
+      z-index:0;
+      filter: blur(44px);
+      opacity: 0.48;
     }
-    .orb{
+    .g{
       position:absolute;
-      width: 420px;
-      height: 420px;
+      width: 420px; height: 420px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,0.55), transparent 60%);
-      animation: floaty 14s ease-in-out infinite;
+      background: radial-gradient(circle at 35% 35%, rgba(124,92,255,0.55), transparent 62%);
+      animation: floaty 16s ease-in-out infinite;
     }
-    .orb:nth-child(2){
+    .g:nth-child(2){
       width: 520px; height: 520px;
-      left: 65%; top: 55%;
-      background: radial-gradient(circle at 40% 40%, rgba(55,198,255,0.45), transparent 62%);
-      animation-duration: 18s;
-    }
-    .orb:nth-child(3){
-      width: 380px; height: 380px;
-      left: 10%; top: 65%;
-      background: radial-gradient(circle at 45% 45%, rgba(88,255,163,0.30), transparent 62%);
+      left: 62%; top: 56%;
+      background: radial-gradient(circle at 40% 40%, rgba(55,198,255,0.44), transparent 64%);
       animation-duration: 20s;
+    }
+    .g:nth-child(3){
+      width: 360px; height: 360px;
+      left: 12%; top: 66%;
+      background: radial-gradient(circle at 45% 45%, rgba(88,255,163,0.26), transparent 64%);
+      animation-duration: 22s;
     }
     @keyframes floaty{
       0%,100%{ transform: translate3d(0,0,0) scale(1); }
-      50%{ transform: translate3d(20px,-18px,0) scale(1.03); }
+      50%{ transform: translate3d(18px,-14px,0) scale(1.03); }
     }
 
+    /* сузили сайт */
     .wrap{
-      width: min(940px, 100%);
+      width: min(720px, 100%);
       display:grid;
-      gap: 18px;
-      position: relative;
-      z-index: 1;
+      gap: 16px;
+      position:relative;
+      z-index:1;
     }
 
     header, main, footer{
       border-radius: 22px;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
       border: 1px solid var(--line);
       background: linear-gradient(180deg, rgba(16,26,51,0.92), rgba(15,24,48,0.88));
-      position: relative;
-      overflow: hidden;
+      backdrop-filter: blur(10px);
+      overflow:hidden;
+      position:relative;
     }
     header::before, main::before, footer::before{
       content:"";
       position:absolute;
       inset:-1px;
       border-radius: 22px;
-      padding: 1px;
-      background: linear-gradient(135deg, rgba(124,92,255,0.55), rgba(55,198,255,0.45), rgba(88,255,163,0.22));
+      padding:1px;
+      background: linear-gradient(135deg, rgba(124,92,255,0.50), rgba(55,198,255,0.38), rgba(88,255,163,0.18));
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       pointer-events:none;
-      opacity: 0.40;
+      opacity: 0.35;
     }
 
     header{
-      padding: 26px 26px;
+      padding: 26px 22px 22px;
       text-align:center;
     }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.04);
-      color: rgba(232,238,252,0.86);
-      font-size: 12px;
-      letter-spacing: .2px;
-      margin-bottom: 10px;
-    }
+
+    /* Заголовок “Мне скучно” - перелив + свечение */
     h1{
       margin:0;
-      font-size: clamp(32px, 3.6vw, 48px);
+      font-family: "Comfortaa", "Manrope", sans-serif;
+      font-size: clamp(34px, 4.2vw, 54px);
       letter-spacing: 0.2px;
+      line-height:1.05;
+      background: linear-gradient(90deg, var(--a1), var(--a2), var(--a3), var(--a2), var(--a1));
+      background-size: 220% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow:
+        0 0 24px rgba(55,198,255,0.22),
+        0 0 34px rgba(124,92,255,0.18);
+      animation: shine 6.5s ease-in-out infinite;
     }
+    @keyframes shine{
+      0%,100%{ background-position: 0% 50%; }
+      50%{ background-position: 100% 50%; }
+    }
+
     .lead{
       margin: 10px 0 0;
       color: var(--muted);
-      font-size: 15px;
+      font-size: 14.5px;
     }
 
     main{
-      padding: 26px;
-      display:grid;
-      gap: 18px;
-    }
-
-    .generator{
+      padding: 20px;
       display:grid;
       gap: 14px;
-      text-align:center;
-      padding: 14px 14px 10px;
+    }
+
+    .card{
+      padding: 16px;
       border-radius: 18px;
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .btnWrap{
-      display:flex;
-      justify-content:center;
-      margin: 8px 0 2px;
+    .generator{
+      text-align:center;
+      display:grid;
+      gap: 10px;
     }
 
+    /* сузили кнопку */
+    .btnWrap{ display:flex; justify-content:center; }
     button.primary{
-      position: relative;
+      position:relative;
       appearance:none;
-      border: 0;
+      border:0;
       border-radius: 18px;
-      padding: 20px 32px;        /* побольше */
-      font-size: 19px;           /* побольше */
-      font-weight: 900;
+      padding: 18px 22px;
+      font-size: 18px;
+      font-weight: 800;
       cursor:pointer;
-      color: #081022;
-      background: linear-gradient(135deg, var(--accent1), var(--accent2));
-      box-shadow: 0 18px 54px rgba(55,198,255,0.20);
+      color:#081022;
+      background: linear-gradient(135deg, var(--a1), var(--a2));
+      box-shadow: 0 18px 54px rgba(55,198,255,0.16);
       transition: transform .12s ease, filter .18s ease, box-shadow .18s ease;
       overflow:hidden;
-      min-width: min(520px, 100%);
+      width: min(440px, 100%);
     }
 
     /* переливание */
@@ -217,51 +224,50 @@
       background: linear-gradient(115deg,
         transparent 0%,
         rgba(255,255,255,0.14) 35%,
-        rgba(255,255,255,0.35) 50%,
+        rgba(255,255,255,0.34) 50%,
         rgba(255,255,255,0.14) 65%,
         transparent 100%);
-      transform: translateX(-40%) rotate(10deg);
+      transform: translateX(-42%) rotate(10deg);
       transition: transform .55s ease;
       pointer-events:none;
     }
     button.primary:hover{
       transform: translateY(-1px);
       filter: brightness(1.03);
-      box-shadow: 0 20px 62px rgba(124,92,255,0.18), 0 20px 62px rgba(55,198,255,0.18);
+      box-shadow: 0 20px 62px rgba(124,92,255,0.14), 0 20px 62px rgba(55,198,255,0.14);
     }
-    button.primary:hover::after{
-      transform: translateX(40%) rotate(10deg);
-    }
-    button.primary:active{ transform: translateY(0px) scale(0.99); }
+    button.primary:hover::after{ transform: translateX(42%) rotate(10deg); }
+    button.primary:active{ transform: translateY(0) scale(0.99); }
 
     .resultInput{
-      width: 100%;
+      width: min(560px, 100%);
+      margin: 0 auto;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(255,255,255,0.04);
       color: var(--text);
-      padding: 14px 14px;
+      padding: 14px 12px;
       font-size: 16px;
-      outline: none;
-      text-align: center;
+      outline:none;
+      text-align:center;
       transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
     }
     .resultInput::placeholder{ color: rgba(232,238,252,0.55); }
 
-    /* анимация “выпадения” */
+    /* анимация выпадения */
     .pop{
       animation: popIn .45s ease-out;
       border-color: rgba(55,198,255,0.40) !important;
       box-shadow: 0 0 0 6px rgba(55,198,255,0.10);
     }
     @keyframes popIn{
-      0%{ transform: translateY(6px) scale(0.985); opacity: 0.35; }
+      0%{ transform: translateY(7px) scale(0.985); opacity: 0.35; }
       70%{ transform: translateY(-2px) scale(1.008); opacity: 1; }
       100%{ transform: translateY(0) scale(1); opacity: 1; }
     }
 
     .hint{
-      margin: 2px 0 2px;
+      margin: 2px 0 0;
       font-size: 12px;
       color: rgba(232,238,252,0.55);
     }
@@ -274,26 +280,20 @@
       background: rgba(255,255,255,0.06);
     }
 
-    .panel{
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
     .panelHead{
       text-align:center;
       display:grid;
-      gap: 8px;
+      gap: 6px;
       margin-bottom: 10px;
     }
     h2{
-      margin: 0;
-      font-size: 16px;
+      margin:0;
+      font-size: 15px;
       letter-spacing: .2px;
+      font-weight: 800;
     }
     .subtitle{
-      margin: 0;
+      margin:0;
       color: var(--muted);
       font-size: 14px;
     }
@@ -303,7 +303,7 @@
       justify-content:center;
       gap: 10px;
       flex-wrap: wrap;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .miniBtn{
@@ -313,7 +313,7 @@
       background: rgba(255,255,255,0.05);
       color: rgba(232,238,252,0.92);
       border-radius: 999px;
-      padding: 9px 12px;
+      padding: 8px 12px;
       font-size: 13px;
       font-weight: 800;
       cursor:pointer;
@@ -342,7 +342,7 @@
       background: rgba(255,255,255,0.06);
     }
     .miniBtn:hover::after{ transform: translateX(55%) rotate(12deg); }
-    .miniBtn:active{ transform: translateY(0px) scale(0.99); }
+    .miniBtn:active{ transform: translateY(0) scale(0.99); }
 
     .chips{
       display:flex;
@@ -351,13 +351,12 @@
       justify-content:center;
       align-items:center;
     }
-
     .chip{
       position: relative;
       user-select:none;
       cursor:pointer;
       border-radius: 999px;
-      padding: 9px 12px;
+      padding: 8px 12px;
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(255,255,255,0.04);
       color: rgba(232,238,252,0.92);
@@ -371,7 +370,6 @@
       white-space: nowrap;
       max-width: 100%;
     }
-
     .chip::after{
       content:"";
       position:absolute;
@@ -394,7 +392,6 @@
       background: rgba(255,255,255,0.05);
     }
     .chip:hover::after{ transform: translateX(55%) rotate(12deg); }
-
     .chip[aria-pressed="true"]{
       border-color: rgba(55,198,255,0.50);
       background: linear-gradient(135deg, rgba(124,92,255,0.18), rgba(55,198,255,0.14));
@@ -402,25 +399,56 @@
 
     .muted{
       margin: 10px 0 0;
-      color: rgba(232,238,252,0.6);
+      color: rgba(232,238,252,0.62);
       font-size: 12px;
       text-align:center;
-      line-height: 1.35;
+      line-height: 1.4;
     }
 
-    .formBox{
-      width: 100%;
-      border: 1px solid rgba(255,255,255,0.10);
-      border-radius: 16px;
-      overflow: hidden;
-      background: rgba(255,255,255,0.03);
+    .linkBtnRow{
+      display:flex;
+      justify-content:center;
+      margin-top: 8px;
     }
-    iframe{
-      width: 100%;
-      height: 760px;
-      border: 0;
-      display:block;
+    a.linkBtn{
+      position: relative;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      text-decoration:none;
+      font-weight: 850;
+      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      color: rgba(232,238,252,0.92);
+      overflow:hidden;
+      transition: transform .12s ease, filter .18s ease, border-color .18s ease, background .18s ease;
     }
+    a.linkBtn::after{
+      content:"";
+      position:absolute;
+      inset: -70% -40%;
+      background: linear-gradient(120deg,
+        transparent 0%,
+        rgba(255,255,255,0.10) 35%,
+        rgba(255,255,255,0.22) 50%,
+        rgba(255,255,255,0.10) 65%,
+        transparent 100%);
+      transform: translateX(-55%) rotate(12deg);
+      transition: transform .55s ease;
+      pointer-events:none;
+      opacity: 0.9;
+    }
+    a.linkBtn:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+      border-color: rgba(55,198,255,0.34);
+      background: rgba(255,255,255,0.06);
+    }
+    a.linkBtn:hover::after{ transform: translateX(55%) rotate(12deg); }
 
     footer{
       padding: 14px 18px;
@@ -434,13 +462,13 @@
       border-bottom: 1px dashed rgba(55,198,255,0.5);
     }
 
-    /* Донат-плашка (только Boosty) */
+    /* Донат-плашка: только Boosty */
     .donateBar{
       position: fixed;
       right: 14px;
       bottom: 14px;
       z-index: 9999;
-      width: min(360px, calc(100vw - 28px));
+      width: min(340px, calc(100vw - 28px));
       background: rgba(16,26,51,0.92);
       border: 1px solid rgba(255,255,255,0.10);
       border-radius: 18px;
@@ -495,8 +523,7 @@
       line-height: 32px;
       text-align:center;
     }
-
-    .donateLinkRow{
+    .donateRow{
       margin-top: 10px;
       position: relative;
       z-index: 1;
@@ -511,7 +538,6 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap: 8px;
       text-decoration:none;
       font-weight: 950;
       font-size: 12px;
@@ -539,7 +565,6 @@
     }
     .boostyBtn:hover::after{ transform: translateX(55%) rotate(12deg); }
     .boostyBtn:hover{ filter: brightness(1.05); }
-
     .buyText{
       color: rgba(232,238,252,0.72);
       font-size: 12px;
@@ -550,43 +575,32 @@
 </head>
 
 <body>
-  <div class="bgOrbs" aria-hidden="true">
-    <div class="orb" style="left:12%; top:18%;"></div>
-    <div class="orb"></div>
-    <div class="orb"></div>
+  <div class="glow" aria-hidden="true">
+    <div class="g" style="left:12%; top:18%;"></div>
+    <div class="g"></div>
+    <div class="g"></div>
   </div>
 
   <div class="wrap">
     <header>
-      <div class="badge">⚡ Быстро • 🎲 Случайно • ☁️ Легко</div>
       <h1>Мне скучно</h1>
-      <p class="lead">Нажми кнопку - и получи идею. Можно сузить выбор режимами.</p>
+      <p class="lead">Нажми кнопку и получи случайную идею. Можно выбрать режимы, чтобы было точнее.</p>
     </header>
 
     <main>
-      <section class="generator" aria-label="Генератор идей">
+      <section class="card generator" aria-label="Генератор идей">
         <div class="btnWrap">
           <button id="btn" class="primary" type="button">Чем мне заняться?</button>
         </div>
 
-        <input
-          id="resultField"
-          class="resultInput"
-          type="text"
-          placeholder="Тут появится идея..."
-          readonly
-          aria-live="polite"
-        />
-
+        <input id="resultField" class="resultInput" type="text" placeholder="Тут появится идея..." readonly aria-live="polite" />
         <p class="hint">Можно нажать <kbd>Enter</kbd> или <kbd>Space</kbd>, когда кнопка в фокусе</p>
       </section>
 
-      <section class="panel" aria-label="Режимы">
+      <section class="card" aria-label="Режимы">
         <div class="panelHead">
           <h2>Режимы</h2>
           <p class="subtitle">Выбери режимы (по желанию) и нажми кнопку - выпадет случайное занятие.</p>
-
-          <!-- кнопка сброса -->
           <div class="rowControls">
             <button id="resetBtn" class="miniBtn" type="button">Сбросить режимы</button>
           </div>
@@ -599,28 +613,67 @@
         </p>
       </section>
 
-      <section class="panel" aria-label="Отправить идею">
+      <section class="card" aria-label="Предложить идею">
         <div class="panelHead">
           <h2>Предложить свою идею</h2>
-          <p class="subtitle">Заполни форму - идеи попадут автору.</p>
+          <p class="subtitle">Форма откроется по ссылке (быстро и аккуратно).</p>
         </div>
-        <div class="formBox">
-          <iframe
-            title="Google Form для идей"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-            src="https://docs.google.com/forms/d/e/1FAIpQLScC5loEay7_Yi8ha8byhEQbuWMl62xjVuaxTg4GjsO0p2Fubg/viewform?embedded=true">
-          </iframe>
+        <div class="linkBtnRow">
+          <a class="linkBtn" href="https://docs.google.com/forms/d/e/1FAIpQLScC5loEay7_Yi8ha8byhEQbuWMl62xjVuaxTg4GjsO0p2Fubg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">
+            📝 Открыть Google Форму
+          </a>
         </div>
       </section>
 
-      <section class="panel" aria-label="О сайте">
+      <!-- SEO/текст для индексации -->
+      <section class="card" aria-label="Описание и FAQ">
         <div class="panelHead">
-          <h2>Что это</h2>
-          <p class="subtitle">Мини-сайт, чтобы быстро придумать занятие, когда скучно.</p>
+          <h2>Идеи, чем заняться, когда скучно</h2>
+          <p class="subtitle">Немного текста для тех, кто попал сюда из поиска - и чтобы сайт лучше индексировался.</p>
         </div>
-        <p class="muted" style="margin-top:0;">
-          Открыл - нажал - получил идею. Если хочется точнее, включи пару режимов.
+
+        <div style="display:grid; gap:10px; color: rgba(232,238,252,0.86); font-size:14px;">
+          <p>
+            Этот сайт - простой генератор идей, чем заняться, когда скучно. Иногда сложно придумать занятие быстро:
+            хочется и расслабиться, и переключиться, и не тратить много сил. Поэтому здесь есть кнопка, которая выдаёт
+            случайное занятие, а режимы помогают точнее подобрать идею.
+          </p>
+          <p>
+            Можно выбрать занятия дома, на улице или в интернете. Также доступны режимы: релакс, активность, творчество,
+            хобби, саморазвитие, без денег и "на 5 минут". Если ты не хочешь идеи про друзей, питомца или вторую половинку,
+            просто не включай эти режимы - тогда такие варианты не выпадут.
+          </p>
+          <p>
+            Если ты ищешь "что делать когда скучно", "чем заняться дома", "чем заняться без денег" или "идеи для хобби" -
+            попробуй несколько режимов и нажимай кнопку, пока не попадётся то, что прямо сейчас подходит.
+          </p>
+
+          <details style="border:1px solid rgba(255,255,255,0.10); border-radius:14px; background:rgba(255,255,255,0.03); padding:10px 12px;">
+            <summary style="cursor:pointer; font-weight:800;">Как работают режимы?</summary>
+            <p style="margin:8px 0 0; color: rgba(232,238,252,0.78);">
+              Режимы - это фильтры. Если выбрать "Дома" и "Релакс", то выпадут идеи, которые подходят и дому, и спокойному настроению.
+              Режимы можно сочетать. Кнопка "Сбросить режимы" отключает всё одним нажатием.
+            </p>
+          </details>
+
+          <details style="border:1px solid rgba(255,255,255,0.10); border-radius:14px; background:rgba(255,255,255,0.03); padding:10px 12px;">
+            <summary style="cursor:pointer; font-weight:800;">Почему иногда пишется, что нет идей?</summary>
+            <p style="margin:8px 0 0; color: rgba(232,238,252,0.78);">
+              Если включить слишком много режимов сразу, пересечение может стать пустым. Попробуй выключить один режим
+              или оставь только локацию (например, "В интернете") и один стиль (например, "Саморазвитие").
+            </p>
+          </details>
+
+          <details style="border:1px solid rgba(255,255,255,0.10); border-radius:14px; background:rgba(255,255,255,0.03); padding:10px 12px;">
+            <summary style="cursor:pointer; font-weight:800;">Можно предложить свою идею?</summary>
+            <p style="margin:8px 0 0; color: rgba(232,238,252,0.78);">
+              Да. Нажми "Открыть Google Форму" и отправь идею - автор добавит лучшие варианты в генератор.
+            </p>
+          </details>
+        </div>
+
+        <p class="muted" style="margin-top:12px;">
+          Подсказка: если хочешь быстро - выбери "На 5 минут". Если хочешь спокойнее - "Релакс". Если хочется пользы - "Саморазвитие".
         </p>
       </section>
     </main>
@@ -640,14 +693,13 @@
       <button class="donateClose" id="donateClose" type="button" aria-label="Закрыть">×</button>
     </div>
 
-    <div class="donateLinkRow">
+    <div class="donateRow">
       <a class="boostyBtn" href="https://boosty.to/alenagolub/donate" target="_blank" rel="noopener noreferrer">Boosty</a>
       <span class="buyText">Купить мне кофе с булочкой</span>
     </div>
   </aside>
 
   <script>
-    // РЕЖИМЫ
     const TAGS = [
       { id: "home",     label: "Дома" },
       { id: "outside",  label: "На улице" },
@@ -666,12 +718,9 @@
       { id: "pet",      label: "С питомцем" }
     ];
 
-    // Теги, требующие явного выбора
     const GATED_TAGS = new Set(["pet", "friends", "couple"]);
-    // Локации
     const LOCATION_TAGS = new Set(["home", "outside", "online"]);
 
-    // ИДЕИ (оставляю текущую расширенную базу — при желании добавим ещё)
     const IDEAS = [
       { text: "Почитать книгу 15-20 минут", tags: ["home","relax","learn","free"] },
       { text: "Слепить из пластилина что-нибудь смешное", tags: ["home","creative","hobby"] },
@@ -679,49 +728,23 @@
       { text: "Навести порядок на одном участке (стол или полка)", tags: ["home","short","free"] },
       { text: "Сделать чай или какао и устроить уютную паузу", tags: ["home","relax"] },
       { text: "Сделать растяжку 7 минут", tags: ["home","active","short","free"] },
-      { text: "Составить список дел на завтра", tags: ["home","short","learn","free"] },
-      { text: "Написать мини-историю на 5 предложений", tags: ["home","short","creative","free"] },
-      { text: "Сделать бумажный самолетик и проверить дальность", tags: ["home","creative","short","free","hobby"] },
-      { text: "Устроить 10 минут уборки под музыку", tags: ["home","active","free"] },
 
       { text: "Прогуляться 10-15 минут", tags: ["outside","active","free","short"] },
       { text: "Найти 5 красивых деталей вокруг (мини-квест)", tags: ["outside","relax","free","short"] },
-      { text: "Сделать 10 фото с необычными ракурсами", tags: ["outside","creative","free","hobby"] },
-      { text: "Пройтись без телефона 10 минут", tags: ["outside","relax","free","short"] },
 
       { text: "Посмотреть короткий документальный ролик", tags: ["online","relax","learn","free"] },
       { text: "Послушать подкаст на интересную тему", tags: ["online","relax","learn","free"] },
       { text: "Сыграть в короткую игру в браузере", tags: ["online","relax","short"] },
-      { text: "Пройти веселый квиз или тест", tags: ["online","relax","short"] },
-      { text: "Выучить 10 новых слов", tags: ["online","short","learn","free"] },
-      { text: "Собрать плейлист под настроение", tags: ["online","relax","hobby"] },
 
       { text: "Сделать 5 минут дыхания: вдох 4, выдох 6", tags: ["relax","short","free"] },
       { text: "Поставить мини-цель на день и сделать первый шаг", tags: ["learn","short","free"] },
-      { text: "Составить список желаний: 10 вещей, которые хочешь", tags: ["relax","learn","free"] },
 
-      // gated: питомец
+      // gated
       { text: "Поиграть с питомцем 10 минут (мячик или веревочка)", tags: ["pet","active","short"] },
-      { text: "Сделать питомцу простую игрушку", tags: ["pet","creative","free","hobby"] },
-      { text: "Прогуляться с питомцем 10-15 минут", tags: ["pet","outside","active","free"] },
-      { text: "Почесать питомца 5 минут и понаблюдать за реакцией", tags: ["pet","home","relax","short"] },
-      { text: "Сфоткать питомца смешно (серия из 5 фото)", tags: ["pet","home","creative","short"] },
-
-      // gated: друзья
       { text: "Написать другу: 'Как ты?'", tags: ["friends","online","free","short"] },
-      { text: "Устроить мини-викторину с друзьями", tags: ["friends","online","relax"] },
-      { text: "Скинуть другу мем и спросить, как дела", tags: ["friends","online","short","free"] },
-      { text: "Предложить другу мини-прогулку на 15 минут", tags: ["friends","outside","relax","free"] },
-
-      // gated: пара
-      { text: "Придумать 3 идеи для свидания и выбрать одну", tags: ["couple","relax"] },
-      { text: "Сыграть вместе в игру (настолка или видео)", tags: ["couple","relax","hobby"] },
-      { text: "Сделать 3 комплимента второй половинке", tags: ["couple","relax","short","free"] },
-      { text: "Посмотреть вместе короткое видео и обсудить", tags: ["couple","online","relax"] },
       { text: "Мини-свидание дома: чай и разговор без телефонов", tags: ["couple","home","relax"] }
     ];
 
-    // UI
     const chipsWrap = document.getElementById("chips");
     const btn = document.getElementById("btn");
     const resetBtn = document.getElementById("resetBtn");
@@ -752,19 +775,16 @@
     function matchesFilters(idea){
       const tags = idea.tags || [];
 
-      // gated: pet/friends/couple только при выбранном режиме
       for (const gated of GATED_TAGS){
         if (tags.includes(gated) && !activeTagSet.has(gated)) return false;
       }
 
-      // locations: если выбрана хотя бы одна, идея должна совпасть хотя бы с одной
       const chosenLocations = [...activeTagSet].filter(t => LOCATION_TAGS.has(t));
       if (chosenLocations.length > 0){
         const ok = chosenLocations.some(loc => tags.includes(loc));
         if (!ok) return false;
       }
 
-      // остальные теги - строгий AND
       for (const t of activeTagSet){
         if (LOCATION_TAGS.has(t)) continue;
         if (!tags.includes(t)) return false;
@@ -796,7 +816,6 @@
 
     function animateResult(){
       resultField.classList.remove("pop");
-      // forcing reflow so animation can retrigger
       void resultField.offsetWidth;
       resultField.classList.add("pop");
       window.setTimeout(() => resultField.classList.remove("pop"), 520);
@@ -809,14 +828,11 @@
       resultField.select();
     }
 
-    // Reset
     function resetModes(){
       activeTagSet.clear();
-      // обновим aria-pressed
-      for (const btn of chipsWrap.querySelectorAll(".chip")){
-        btn.setAttribute("aria-pressed","false");
+      for (const b of chipsWrap.querySelectorAll(".chip")){
+        b.setAttribute("aria-pressed","false");
       }
-      // приятная подсказка
       resultField.value = "Режимы сброшены. Нажми кнопку - и получишь случайную идею 🙂";
       animateResult();
     }
