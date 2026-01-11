@@ -22,7 +22,12 @@
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' x='10' font-size='44'%3E%F0%9F%92%A1%3C/text%3E%3C/svg%3E" />
 
-  <!-- Besom 2 TTF: положи файл сюда: /fonts/Besom2.ttf -->
+  <!-- основной шрифт (НЕ Roboto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Besom2 только для заголовка: положи файл сюда /fonts/Besom2.ttf -->
   <style>
     @font-face{
       font-family: "Besom2";
@@ -76,18 +81,10 @@
         radial-gradient(760px 460px at 20% 92%, rgba(124,92,255,0.14), transparent 55%),
         radial-gradient(760px 460px at 90% 82%, rgba(55,198,255,0.10), transparent 60%);
       color: var(--text);
-
-      /* ВЕЗДЕ Besom 2 */
-      font-family: "Besom2", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
-
+      font-family: "Montserrat", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
       line-height:1.55;
       text-rendering: optimizeLegibility;
       overflow-x:hidden;
-    }
-
-    /* Besom часто “крупный” — чуть нормализуем читаемость */
-    body, button, input, textarea{
-      letter-spacing: 0.2px;
     }
 
     .glow{
@@ -158,9 +155,11 @@
       text-align:center;
     }
 
+    /* Besom2 только тут */
     h1{
       margin:0;
-      font-size: clamp(42px, 4.6vw, 62px);
+      font-family: "Besom2", "Montserrat", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+      font-size: clamp(44px, 4.8vw, 66px);
       line-height:1.03;
       font-weight: 400;
       background: linear-gradient(90deg, var(--a1), var(--a2), var(--a3), var(--a2), var(--a1));
@@ -181,7 +180,8 @@
     .lead{
       margin: 10px 0 0;
       color: var(--muted);
-      font-size: 16px;
+      font-size: 15px;
+      font-weight: 500;
     }
 
     main{
@@ -203,7 +203,11 @@
       gap: 10px;
     }
 
-    .btnWrap{ display:flex; justify-content:center; }
+    /* одна ширина для кнопки и поля */
+    .controlW{
+      width: min(420px, 100%);
+      margin: 0 auto;
+    }
 
     button.primary{
       position:relative;
@@ -211,14 +215,16 @@
       border: 1px solid rgba(255,255,255,0.12);
       border-radius: 16px;
       padding: 16px 18px;
-      font-size: 20px;
+      font-size: 18px;
+      font-weight: 700;
       cursor:pointer;
       color:#ffffff;
       background: linear-gradient(135deg, var(--a1), var(--a2));
       box-shadow: 0 14px 40px rgba(55,198,255,0.14);
       transition: transform .12s ease, filter .18s ease, box-shadow .18s ease;
       overflow:hidden;
-      width: min(420px, 100%);
+      width: 100%;
+      display:block;
     }
     button.primary::after{
       content:"";
@@ -245,14 +251,14 @@
     .between{ height: 10px; }
 
     .resultBox{
-      width: min(420px, 100%);
-      margin: 0 auto;
+      width: 100%;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.14);
       background: rgba(255,255,255,0.04);
       color: var(--text);
       padding: 12px 12px;
-      font-size: 16px;
+      font-size: 15px;
+      font-weight: 600;
       outline:none;
       text-align:center;
       line-height: 1.35;
@@ -260,6 +266,7 @@
       overflow: hidden;
       min-height: 46px;
       transition: box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+      display:block;
     }
     .resultBox::placeholder{ color: rgba(232,238,252,0.55); }
 
@@ -276,12 +283,13 @@
 
     .hint{
       margin: 2px 0 0;
-      font-size: 13px;
+      font-size: 12px;
       color: rgba(232,238,252,0.55);
+      font-weight: 500;
     }
     kbd{
       font-family: inherit;
-      font-size: 12px;
+      font-size: 11px;
       padding: 2px 6px;
       border-radius: 6px;
       border: 1px solid rgba(255,255,255,0.18);
@@ -296,15 +304,17 @@
     }
     h2{
       margin:0;
-      font-size: 18px;
-      font-weight: 400;
+      font-size: 16px;
+      font-weight: 700;
     }
     .subtitle{
       margin:0;
       color: var(--muted);
-      font-size: 16px;
+      font-size: 14px;
+      font-weight: 500;
     }
 
+    /* РЕЖИМЫ */
     .chips{
       display:flex;
       flex-wrap:wrap;
@@ -312,6 +322,7 @@
       justify-content:center;
       align-items:center;
       margin-top: 8px;
+      min-height: 44px; /* чтобы не “прыгало” */
     }
 
     .chip{
@@ -326,8 +337,8 @@
       border: 1px solid rgba(255,255,255,0.14);
       background: linear-gradient(135deg, var(--c1), var(--c2));
       color: rgba(255,255,255,0.95);
-      font-size: 15px;
-      font-weight: 400;
+      font-size: 13px;
+      font-weight: 700;
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -336,7 +347,6 @@
       white-space: nowrap;
       max-width: 100%;
     }
-
     .chip::after{
       content:"";
       position:absolute;
@@ -352,19 +362,19 @@
       pointer-events:none;
       opacity: 0.85;
     }
-
     .chip:hover{
       transform: translateY(-1px);
-      filter: brightness(1.05);
+      filter: brightness(1.06);
       border-color: rgba(255,255,255,0.22);
     }
     .chip:hover::after{ transform: translateX(55%) rotate(12deg); }
 
     .chip[aria-pressed="true"]{
-      border-color: rgba(255,255,255,0.38);
+      border-color: rgba(255,255,255,0.45);
       filter: brightness(1.10);
     }
 
+    /* Сброс внизу и красный */
     .resetRow{
       display:flex;
       justify-content:center;
@@ -376,7 +386,8 @@
       cursor:pointer;
       border-radius: 14px;
       padding: 10px 14px;
-      font-size: 15px;
+      font-size: 13px;
+      font-weight: 700;
       color: #fff;
       border: 1px solid rgba(255,255,255,0.16);
       background: linear-gradient(135deg, rgba(255,74,74,0.95), rgba(255,130,130,0.70));
@@ -404,14 +415,14 @@
       box-shadow: 0 16px 52px rgba(255,74,74,0.20);
     }
     .resetBtn:hover::after{ transform: translateX(55%) rotate(12deg); }
-    .resetBtn:active{ transform: translateY(0) scale(0.99); }
 
     .muted{
       margin: 12px 0 0;
       color: rgba(232,238,252,0.62);
-      font-size: 14px;
+      font-size: 12px;
       text-align:center;
       line-height: 1.4;
+      font-weight: 500;
     }
 
     .linkBtnRow{
@@ -426,7 +437,8 @@
       justify-content:center;
       gap: 10px;
       text-decoration:none;
-      font-size: 15px;
+      font-size: 13px;
+      font-weight: 700;
       padding: 10px 14px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,0.14);
@@ -462,7 +474,8 @@
       padding: 14px 18px;
       text-align:center;
       color: rgba(232,238,252,0.6);
-      font-size: 14px;
+      font-size: 12px;
+      font-weight: 500;
     }
     footer a{
       color: rgba(55,198,255,0.95);
@@ -470,6 +483,7 @@
       border-bottom: 1px dashed rgba(55,198,255,0.5);
     }
 
+    /* Boosty плавашка */
     .donateBar{
       position: fixed;
       right: 14px;
@@ -505,8 +519,8 @@
       position: relative;
       z-index: 1;
     }
-    .donateTitle{ margin:0; font-size: 16px; font-weight: 400; }
-    .donateText{ margin: 4px 0 0; font-size: 14px; color: rgba(232,238,252,0.70); line-height: 1.35; }
+    .donateTitle{ margin:0; font-size: 13px; font-weight: 700; }
+    .donateText{ margin: 4px 0 0; font-size: 12px; color: rgba(232,238,252,0.70); line-height: 1.35; font-weight: 500; }
     .donateClose{
       appearance:none;
       border:0;
@@ -516,7 +530,7 @@
       height: 32px;
       border-radius: 10px;
       cursor:pointer;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 32px;
       text-align:center;
     }
@@ -536,7 +550,8 @@
       align-items:center;
       justify-content:center;
       text-decoration:none;
-      font-size: 14px;
+      font-size: 12px;
+      font-weight: 700;
       padding: 10px 12px;
       border-radius: 12px;
       border: 1px solid rgba(255,255,255,0.14);
@@ -561,7 +576,7 @@
     }
     .boostyBtn:hover::after{ transform: translateX(55%) rotate(12deg); }
     .boostyBtn:hover{ filter: brightness(1.05); }
-    .buyText{ color: rgba(232,238,252,0.72); font-size: 14px; white-space: nowrap; }
+    .buyText{ color: rgba(232,238,252,0.72); font-size: 12px; font-weight: 600; white-space: nowrap; }
   </style>
 </head>
 
@@ -580,20 +595,20 @@
 
     <main>
       <section class="card generator" aria-label="Генератор идей">
-        <div class="btnWrap">
+        <div class="controlW">
           <button id="btn" class="primary" type="button">Чем мне заняться?</button>
+
+          <div class="between" aria-hidden="true"></div>
+
+          <textarea
+            id="resultField"
+            class="resultBox"
+            placeholder="Тут появится идея..."
+            readonly
+            rows="2"
+            aria-live="polite"
+          ></textarea>
         </div>
-
-        <div class="between" aria-hidden="true"></div>
-
-        <textarea
-          id="resultField"
-          class="resultBox"
-          placeholder="Тут появится идея..."
-          readonly
-          rows="2"
-          aria-live="polite"
-        ></textarea>
 
         <p class="hint">Можно нажать <kbd>Enter</kbd> или <kbd>Space</kbd>, когда кнопка в фокусе</p>
       </section>
@@ -604,6 +619,7 @@
           <p class="subtitle">Выбери режимы (по желанию) и нажми кнопку - выпадет случайное занятие.</p>
         </div>
 
+        <!-- ВАЖНО: режимы рисуются сюда -->
         <div id="chips" class="chips" role="group" aria-label="Режимы (фильтры)"></div>
 
         <div class="resetRow">
@@ -634,18 +650,13 @@
           <p class="subtitle">Текст для индексации и для тех, кто пришел из поиска.</p>
         </div>
 
-        <div style="display:grid; gap:10px; color: rgba(232,238,252,0.86); font-size:16px;">
+        <div style="display:grid; gap:10px; color: rgba(232,238,252,0.86); font-size:14px; font-weight:500;">
           <p>
-            Этот сайт помогает быстро придумать, чем заняться, когда скучно. Он полезен, если ты ищешь идеи для дома, прогулки,
-            занятий в интернете, коротких дел "на 5 минут", а также вариантов для релакса, активности, творчества, хобби и саморазвития.
+            Этот сайт помогает быстро придумать, чем заняться, когда скучно: дома, на улице или в интернете.
+            Режимы работают как фильтры: релакс, активность, творчество, хобби, саморазвитие, без денег, на 5 минут.
           </p>
           <p>
-            Режимы работают как фильтры. Можно сочетать: например, "Дома" + "Релакс" или "На улице" + "Активность".
             Если включено слишком много режимов и идей не осталось, сними один фильтр или нажми "Сбросить режимы".
-          </p>
-          <p>
-            Частые запросы: что делать когда скучно, чем заняться дома, чем заняться без денег, идеи для хобби,
-            идеи для саморазвития, идеи для отдыха, чем заняться вечером.
           </p>
         </div>
       </section>
@@ -656,6 +667,7 @@
     </footer>
   </div>
 
+  <!-- Boosty -->
   <aside id="donateBar" class="donateBar" aria-label="Поддержать автора">
     <div class="donateTop">
       <div>
@@ -672,188 +684,212 @@
   </aside>
 
   <script>
-    const TAGS = [
-      { id: "home",     label: "Дома",               c1: "rgba(124,92,255,0.35)", c2: "rgba(124,92,255,0.10)" },
-      { id: "outside",  label: "На улице",           c1: "rgba(88,255,163,0.32)", c2: "rgba(88,255,163,0.10)" },
-      { id: "online",   label: "В интернете",        c1: "rgba(55,198,255,0.34)", c2: "rgba(55,198,255,0.10)" },
+    // Чтобы “режимы” точно появлялись — ждём DOM
+    document.addEventListener("DOMContentLoaded", () => {
+      const TAGS = [
+        { id: "home",     label: "Дома",               c1: "rgba(124,92,255,0.35)", c2: "rgba(124,92,255,0.10)" },
+        { id: "outside",  label: "На улице",           c1: "rgba(88,255,163,0.32)", c2: "rgba(88,255,163,0.10)" },
+        { id: "online",   label: "В интернете",        c1: "rgba(55,198,255,0.34)", c2: "rgba(55,198,255,0.10)" },
 
-      { id: "short",    label: "На 5 минут",         c1: "rgba(255,214,102,0.32)", c2: "rgba(255,214,102,0.10)" },
-      { id: "free",     label: "Без денег",          c1: "rgba(255,125,246,0.28)", c2: "rgba(255,125,246,0.10)" },
-      { id: "creative", label: "Творчество",          c1: "rgba(255,140,60,0.30)",  c2: "rgba(255,140,60,0.10)" },
-      { id: "active",   label: "Активность",         c1: "rgba(255,74,74,0.26)",   c2: "rgba(255,74,74,0.10)" },
-      { id: "relax",    label: "Релакс",             c1: "rgba(160,160,255,0.26)", c2: "rgba(160,160,255,0.10)" },
-      { id: "learn",    label: "Саморазвитие",       c1: "rgba(90,210,255,0.26)",  c2: "rgba(90,210,255,0.10)" },
-      { id: "hobby",    label: "Хобби",              c1: "rgba(180,255,120,0.24)", c2: "rgba(180,255,120,0.10)" },
+        { id: "short",    label: "На 5 минут",         c1: "rgba(255,214,102,0.32)", c2: "rgba(255,214,102,0.10)" },
+        { id: "free",     label: "Без денег",          c1: "rgba(255,125,246,0.28)", c2: "rgba(255,125,246,0.10)" },
+        { id: "creative", label: "Творчество",          c1: "rgba(255,140,60,0.30)",  c2: "rgba(255,140,60,0.10)" },
+        { id: "active",   label: "Активность",         c1: "rgba(255,74,74,0.26)",   c2: "rgba(255,74,74,0.10)" },
+        { id: "relax",    label: "Релакс",             c1: "rgba(160,160,255,0.26)", c2: "rgba(160,160,255,0.10)" },
+        { id: "learn",    label: "Саморазвитие",       c1: "rgba(90,210,255,0.26)",  c2: "rgba(90,210,255,0.10)" },
+        { id: "hobby",    label: "Хобби",              c1: "rgba(180,255,120,0.24)", c2: "rgba(180,255,120,0.10)" },
 
-      { id: "friends",  label: "С друзьями",         c1: "rgba(255,110,180,0.26)", c2: "rgba(255,110,180,0.10)" },
-      { id: "couple",   label: "Со второй половинкой", c1: "rgba(255,160,110,0.26)", c2: "rgba(255,160,110,0.10)" },
-      { id: "pet",      label: "С питомцем",         c1: "rgba(140,220,160,0.24)", c2: "rgba(140,220,160,0.10)" }
-    ];
+        { id: "friends",  label: "С друзьями",         c1: "rgba(255,110,180,0.26)", c2: "rgba(255,110,180,0.10)" },
+        { id: "couple",   label: "Со второй половинкой", c1: "rgba(255,160,110,0.26)", c2: "rgba(255,160,110,0.10)" },
+        { id: "pet",      label: "С питомцем",         c1: "rgba(140,220,160,0.24)", c2: "rgba(140,220,160,0.10)" }
+      ];
 
-    const GATED_TAGS = new Set(["pet", "friends", "couple"]);
-    const LOCATION_TAGS = new Set(["home", "outside", "online"]);
+      const GATED_TAGS = new Set(["pet", "friends", "couple"]);
+      const LOCATION_TAGS = new Set(["home", "outside", "online"]);
 
-    // взаимоисключение: outside <-> online
-    const MUTUAL_EXCLUSIVE = {
-      outside: new Set(["online"]),
-      online: new Set(["outside"])
-    };
+      // взаимоисключение: outside <-> online
+      const MUTUAL_EXCLUSIVE = {
+        outside: new Set(["online"]),
+        online: new Set(["outside"])
+      };
 
-    const IDEAS = [
-      { text: "Почитать книгу 15-20 минут", tags: ["home","relax","learn","free"] },
-      { text: "Слепить из пластилина что-нибудь смешное", tags: ["home","creative","hobby"] },
-      { text: "Нарисовать 5-минутный скетч", tags: ["home","short","creative","free","hobby"] },
-      { text: "Навести порядок на одном участке (стол или полка)", tags: ["home","short","free"] },
-      { text: "Сделать чай или какао и устроить уютную паузу", tags: ["home","relax"] },
-      { text: "Сделать растяжку 7 минут", tags: ["home","active","short","free"] },
+      const IDEAS = [
+        { text: "Почитать книгу 15-20 минут", tags: ["home","relax","learn","free"] },
+        { text: "Слепить из пластилина что-нибудь смешное", tags: ["home","creative","hobby"] },
+        { text: "Нарисовать 5-минутный скетч", tags: ["home","short","creative","free","hobby"] },
+        { text: "Навести порядок на одном участке (стол или полка)", tags: ["home","short","free"] },
+        { text: "Сделать чай или какао и устроить уютную паузу", tags: ["home","relax"] },
+        { text: "Сделать растяжку 7 минут", tags: ["home","active","short","free"] },
 
-      { text: "Прогуляться 10-15 минут", tags: ["outside","active","free","short"] },
-      { text: "Найти 5 красивых деталей вокруг (мини-квест)", tags: ["outside","relax","free","short"] },
+        { text: "Прогуляться 10-15 минут", tags: ["outside","active","free","short"] },
+        { text: "Найти 5 красивых деталей вокруг (мини-квест)", tags: ["outside","relax","free","short"] },
 
-      { text: "Посмотреть короткий документальный ролик", tags: ["online","relax","learn","free"] },
-      { text: "Послушать подкаст на интересную тему", tags: ["online","relax","learn","free"] },
-      { text: "Сыграть в короткую игру в браузере", tags: ["online","relax","short"] },
+        { text: "Посмотреть короткий документальный ролик", tags: ["online","relax","learn","free"] },
+        { text: "Послушать подкаст на интересную тему", tags: ["online","relax","learn","free"] },
+        { text: "Сыграть в короткую игру в браузере", tags: ["online","relax","short"] },
 
-      { text: "Сделать 5 минут дыхания: вдох 4, выдох 6", tags: ["relax","short","free"] },
-      { text: "Поставить мини-цель на день и сделать первый шаг", tags: ["learn","short","free"] },
+        { text: "Сделать 5 минут дыхания: вдох 4, выдох 6", tags: ["relax","short","free"] },
+        { text: "Поставить мини-цель на день и сделать первый шаг", tags: ["learn","short","free"] },
 
-      { text: "Поиграть с питомцем 10 минут (мячик или веревочка)", tags: ["pet","active","short"] },
-      { text: "Написать другу: 'Как ты?'", tags: ["friends","online","free","short"] },
-      { text: "Мини-свидание дома: чай и разговор без телефонов", tags: ["couple","home","relax"] }
-    ];
+        { text: "Поиграть с питомцем 10 минут (мячик или веревочка)", tags: ["pet","active","short"] },
+        { text: "Написать другу: 'Как ты?'", tags: ["friends","online","free","short"] },
+        { text: "Мини-свидание дома: чай и разговор без телефонов", tags: ["couple","home","relax"] }
+      ];
 
-    const chipsWrap = document.getElementById("chips");
-    const btn = document.getElementById("btn");
-    const resetBtn = document.getElementById("resetBtn");
-    const resultField = document.getElementById("resultField");
+      const chipsWrap = document.getElementById("chips");
+      const btn = document.getElementById("btn");
+      const resetBtn = document.getElementById("resetBtn");
+      const resultField = document.getElementById("resultField");
 
-    const activeTagSet = new Set();
-    let lastText = "";
+      // Если чего-то не нашли — просто выходим, чтобы не ломалось
+      if (!chipsWrap || !btn || !resetBtn || !resultField) return;
 
-    function setChipPressed(el, pressed){
-      el.setAttribute("aria-pressed", pressed ? "true" : "false");
-    }
+      const activeTagSet = new Set();
+      let lastText = "";
 
-    function renderChips(){
-      chipsWrap.innerHTML = "";
-      for (const t of TAGS){
-        const el = document.createElement("button");
-        el.type = "button";
-        el.className = "chip";
-        el.textContent = t.label;
-        el.dataset.tagId = t.id;
+      function setChipPressed(el, pressed){
+        el.setAttribute("aria-pressed", pressed ? "true" : "false");
+      }
 
-        el.style.setProperty("--c1", t.c1);
-        el.style.setProperty("--c2", t.c2);
+      function renderChips(){
+        chipsWrap.innerHTML = "";
+        for (const t of TAGS){
+          const el = document.createElement("button");
+          el.type = "button";
+          el.className = "chip";
+          el.textContent = t.label;
+          el.dataset.tagId = t.id;
 
-        setChipPressed(el, activeTagSet.has(t.id));
+          el.style.setProperty("--c1", t.c1);
+          el.style.setProperty("--c2", t.c2);
 
-        el.addEventListener("click", () => {
-          const turningOn = !activeTagSet.has(t.id);
+          setChipPressed(el, activeTagSet.has(t.id));
 
-          if (turningOn) {
-            const excl = MUTUAL_EXCLUSIVE[t.id];
-            if (excl){
-              for (const x of excl){
-                activeTagSet.delete(x);
-                const other = chipsWrap.querySelector(`.chip[data-tag-id="${x}"]`);
-                if (other) setChipPressed(other, false);
+          el.addEventListener("click", () => {
+            const turningOn = !activeTagSet.has(t.id);
+
+            if (turningOn) {
+              // взаимоисключение
+              const excl = MUTUAL_EXCLUSIVE[t.id];
+              if (excl){
+                for (const x of excl){
+                  activeTagSet.delete(x);
+                  const other = chipsWrap.querySelector(`.chip[data-tag-id="${x}"]`);
+                  if (other) setChipPressed(other, false);
+                }
               }
+              activeTagSet.add(t.id);
+              setChipPressed(el, true);
+            } else {
+              activeTagSet.delete(t.id);
+              setChipPressed(el, false);
             }
-            activeTagSet.add(t.id);
-            setChipPressed(el, true);
-          } else {
-            activeTagSet.delete(t.id);
-            setChipPressed(el, false);
-          }
-        });
+          });
 
-        chipsWrap.appendChild(el);
-      }
-    }
-
-    function matchesFilters(idea){
-      const tags = idea.tags || [];
-
-      for (const gated of GATED_TAGS){
-        if (tags.includes(gated) && !activeTagSet.has(gated)) return false;
-      }
-
-      const chosenLocations = [...activeTagSet].filter(t => LOCATION_TAGS.has(t));
-      if (chosenLocations.length > 0){
-        const ok = chosenLocations.some(loc => tags.includes(loc));
-        if (!ok) return false;
-      }
-
-      for (const t of activeTagSet){
-        if (LOCATION_TAGS.has(t)) continue;
-        if (!tags.includes(t)) return false;
-      }
-
-      return true;
-    }
-
-    function pickIdea(){
-      const pool = IDEAS.filter(matchesFilters);
-      if (pool.length === 0){
-        return "Нет идей под выбранные режимы. Попробуй снять один режим.";
-      }
-      let tries = 0;
-      while (tries < 12){
-        const item = pool[Math.floor(Math.random() * pool.length)];
-        if (pool.length === 1 || item.text !== lastText){
-          lastText = item.text;
-          return item.text;
+          chipsWrap.appendChild(el);
         }
-        tries++;
       }
-      const fallback = pool[Math.floor(Math.random() * pool.length)];
-      lastText = fallback.text;
-      return fallback.text;
-    }
 
-    function autoGrow(){
-      resultField.style.height = "auto";
-      resultField.style.height = Math.min(resultField.scrollHeight, 220) + "px";
-    }
+      function matchesFilters(idea){
+        const tags = idea.tags || [];
 
-    function animateResult(){
-      resultField.classList.remove("pop");
-      void resultField.offsetWidth;
-      resultField.classList.add("pop");
-      window.setTimeout(() => resultField.classList.remove("pop"), 520);
-    }
+        // gated: не показываем pet/friends/couple пока режим не включён
+        for (const gated of GATED_TAGS){
+          if (tags.includes(gated) && !activeTagSet.has(gated)) return false;
+        }
 
-    function showIdea(){
-      resultField.value = pickIdea();
-      autoGrow();
-      animateResult();
-      // не делаем focus/select -> не копируется на телефоне
-    }
+        // локации: если выбрана локация — требуем совпадение
+        const chosenLocations = [...activeTagSet].filter(t => LOCATION_TAGS.has(t));
+        if (chosenLocations.length > 0){
+          const ok = chosenLocations.some(loc => tags.includes(loc));
+          if (!ok) return false;
+        }
 
-    function resetModes(){
-      activeTagSet.clear();
-      for (const b of chipsWrap.querySelectorAll(".chip")){
-        setChipPressed(b, false);
+        // остальные выбранные теги должны входить в идею
+        for (const t of activeTagSet){
+          if (LOCATION_TAGS.has(t)) continue;
+          if (!tags.includes(t)) return false;
+        }
+
+        return true;
       }
-      resultField.value = "Режимы сброшены. Нажми кнопку - и получишь случайную идею 🙂";
+
+      function pickIdea(){
+        const pool = IDEAS.filter(matchesFilters);
+        if (pool.length === 0){
+          return "Нет идей под выбранные режимы. Попробуй снять один режим.";
+        }
+        let tries = 0;
+        while (tries < 12){
+          const item = pool[Math.floor(Math.random() * pool.length)];
+          if (pool.length === 1 || item.text !== lastText){
+            lastText = item.text;
+            return item.text;
+          }
+          tries++;
+        }
+        const fallback = pool[Math.floor(Math.random() * pool.length)];
+        lastText = fallback.text;
+        return fallback.text;
+      }
+
+      function autoGrow(){
+        resultField.style.height = "auto";
+        resultField.style.height = Math.min(resultField.scrollHeight, 220) + "px";
+      }
+
+      function animateResult(){
+        resultField.classList.remove("pop");
+        void resultField.offsetWidth;
+        resultField.classList.add("pop");
+        window.setTimeout(() => resultField.classList.remove("pop"), 520);
+      }
+
+      function showIdea(){
+        resultField.value = pickIdea();
+        autoGrow();
+        animateResult();
+        // не делаем focus/select -> на телефоне не выделяется/не “копируется”
+      }
+
+      function resetModes(){
+        activeTagSet.clear();
+        for (const b of chipsWrap.querySelectorAll(".chip")){
+          setChipPressed(b, false);
+        }
+        resultField.value = "Режимы сброшены. Нажми кнопку - и получишь случайную идею 🙂";
+        autoGrow();
+        animateResult();
+      }
+
+      // Рендер и события
+      renderChips();
+      btn.addEventListener("click", showIdea);
+      resetBtn.addEventListener("click", resetModes);
+
+      // клавиатура
+      btn.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          showIdea();
+        }
+      });
+
       autoGrow();
-      animateResult();
-    }
 
-    renderChips();
-    btn.addEventListener("click", showIdea);
-    resetBtn.addEventListener("click", resetModes);
-
-    autoGrow();
-
-    const donateBar = document.getElementById("donateBar");
-    const donateClose = document.getElementById("donateClose");
-    const DONATE_LS_KEY = "donate_bar_closed_v1";
-    if (localStorage.getItem(DONATE_LS_KEY) === "1") donateBar.style.display = "none";
-    donateClose.addEventListener("click", () => {
-      donateBar.style.display = "none";
-      localStorage.setItem(DONATE_LS_KEY, "1");
+      // донат-плашка (без падения, если нет элементов)
+      const donateBar = document.getElementById("donateBar");
+      const donateClose = document.getElementById("donateClose");
+      const DONATE_LS_KEY = "donate_bar_closed_v1";
+      if (donateBar){
+        if (localStorage.getItem(DONATE_LS_KEY) === "1") donateBar.style.display = "none";
+        if (donateClose){
+          donateClose.addEventListener("click", () => {
+            donateBar.style.display = "none";
+            localStorage.setItem(DONATE_LS_KEY, "1");
+          });
+        }
+      }
     });
   </script>
 </body>
