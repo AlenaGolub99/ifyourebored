@@ -5,34 +5,91 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Мне скучно</title>
   <style>
-    :root { --bg:#0b1220; --card:#111a2f; --text:#e8eefc; --muted:#a8b3d6; }
+    :root{
+      --bg:#0b1220;
+      --card:#111a2f;
+      --text:#e8eefc;
+      --muted:#a8b3d6;
+      --chip-bg: rgba(255,255,255,0.05);
+      --chip-border: rgba(255,255,255,0.14);
+      --chip-on-bg: rgba(55,198,255,0.14);
+      --chip-on-border: rgba(55,198,255,0.45);
+    }
+
     * { box-sizing: border-box; }
     body{
-      margin:0; min-height:100vh; display:grid; place-items:center;
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      padding: 28px 16px;
       background: radial-gradient(1200px 600px at 50% 20%, #1a2a55 0%, var(--bg) 55%);
-      color:var(--text);
+      color: var(--text);
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      padding: 24px;
     }
+
     .card{
-      width:min(760px,100%);
+      width: min(820px, 100%);
       background: color-mix(in srgb, var(--card) 92%, transparent);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:22px;
-      padding: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 26px;
       box-shadow: 0 18px 60px rgba(0,0,0,0.45);
       backdrop-filter: blur(10px);
     }
 
-    .top{ display:grid; gap:10px; text-align:center; margin-bottom: 6px; }
-    h1{ margin:0; font-size: clamp(28px, 3.2vw, 40px); }
-    p{ margin:0; color: var(--muted); line-height:1.45; }
+    .top{
+      text-align:center;
+      display:grid;
+      gap: 14px;
+    }
 
-    .row{ display:flex; gap:10px; flex-wrap:wrap; justify-content:center; }
+    h1{
+      margin:0;
+      font-size: clamp(30px, 3.5vw, 44px);
+      letter-spacing: 0.2px;
+    }
+
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 15px;
+    }
+
+    /* Поле результата видно сразу */
+    .resultInput{
+      width: 100%;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      padding: 14px 14px;
+      font-size: 16px;
+      outline: none;
+      text-align: center;
+    }
+    .resultInput::placeholder{
+      color: rgba(232,238,252,0.55);
+    }
+
+    .spacerBig{ height: 10px; } /* больше воздуха */
+
+    .btnWrap{
+      display:flex;
+      justify-content:center;
+      margin-top: 6px;
+      margin-bottom: 6px;
+    }
 
     button.primary{
-      appearance:none; border:0; border-radius:14px;
-      padding: 14px 18px; font-size:16px; font-weight:650; cursor:pointer;
+      appearance:none;
+      border:0;
+      border-radius: 14px;
+      padding: 14px 20px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor:pointer;
       background: linear-gradient(135deg, #7c5cff, #37c6ff);
       color:#081022;
       box-shadow: 0 10px 28px rgba(55,198,255,0.25);
@@ -41,93 +98,8 @@
     button.primary:hover{ filter: brightness(1.03); }
     button.primary:active{ transform: translateY(1px) scale(0.99); }
 
-    .result{
-      margin-top: 12px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      min-height: 52px;
-      display:grid; place-items:center;
-      font-size: 18px;
-      opacity:0; transform: translateY(6px);
-      transition: opacity .18s ease, transform .18s ease;
-      text-align:center;
-    }
-    .result.show{ opacity:1; transform: translateY(0); }
-
-    .panel{
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    .panel h2{
-      margin: 0 0 10px;
-      font-size: 14px;
-      letter-spacing: .2px;
-      color: rgba(232,238,252,0.92);
-    }
-
-    .chips{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
-    .chip{
-      user-select:none;
-      cursor:pointer;
-      border-radius: 999px;
-      padding: 8px 10px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04);
-      color: rgba(232,238,252,0.9);
-      font-size: 13px;
-      display:flex; align-items:center; gap:6px;
-      transition: transform .08s ease, background .15s ease, border-color .15s ease;
-    }
-    .chip:active{ transform: scale(0.99); }
-    .chip[aria-pressed="true"]{
-      background: rgba(55,198,255,0.14);
-      border-color: rgba(55,198,255,0.45);
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    @media (min-width: 760px){
-      .grid{ grid-template-columns: 1.2fr .8fr; }
-    }
-
-    input[type="text"], textarea, select{
-      width:100%;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      padding: 10px 12px;
-      outline: none;
-    }
-    textarea{ min-height: 70px; resize: vertical; }
-    label{ font-size: 12px; color: rgba(232,238,252,0.72); display:block; margin: 8px 0 6px; }
-    .muted{ color: rgba(232,238,252,0.6); font-size: 12px; line-height:1.35; }
-
-    .actions{ display:flex; gap:10px; flex-wrap:wrap; }
-    button.secondary{
-      appearance:none; cursor:pointer;
-      border-radius: 12px;
-      padding: 10px 12px;
-      border: 1px solid rgba(255,255,255,0.16);
-      background: rgba(255,255,255,0.06);
-      color: rgba(232,238,252,0.92);
-      font-weight: 600;
-    }
-    button.danger{
-      border-color: rgba(255,120,120,0.28);
-      background: rgba(255,120,120,0.10);
-    }
-
     .hint{
-      margin-top: 8px;
+      margin-top: 2px;
       font-size: 12px;
       color: rgba(232,238,252,0.55);
       text-align:center;
@@ -141,8 +113,64 @@
       background: rgba(255,255,255,0.06);
     }
 
+    .panel{
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .panelTitle{
+      margin:0 0 12px;
+      font-size: 14px;
+      letter-spacing: .2px;
+      color: rgba(232,238,252,0.92);
+      text-align:center;
+    }
+
+    /* Теги НЕ наслаиваются: делаем сетку */
+    .chipsGrid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .chip{
+      width:100%;
+      user-select:none;
+      cursor:pointer;
+      border-radius: 999px;
+      padding: 10px 12px;
+      border: 1px solid var(--chip-border);
+      background: var(--chip-bg);
+      color: rgba(232,238,252,0.92);
+      font-size: 13px;
+      font-weight: 600;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      transition: transform .08s ease, background .15s ease, border-color .15s ease;
+      white-space: nowrap;
+    }
+    .chip:active{ transform: scale(0.99); }
+    .chip[aria-pressed="true"]{
+      background: var(--chip-on-bg);
+      border-color: var(--chip-on-border);
+    }
+
+    .muted{
+      margin-top: 10px;
+      color: rgba(232,238,252,0.6);
+      font-size: 12px;
+      line-height:1.35;
+      text-align:center;
+    }
+
     footer{
-      margin-top: 14px;
+      margin-top: 16px;
       text-align:center;
       color: rgba(232,238,252,0.6);
       font-size: 12px;
@@ -152,75 +180,51 @@
       text-decoration: none;
       border-bottom: 1px dashed rgba(55,198,255,0.5);
     }
-    footer a:hover{ filter: brightness(1.05); }
   </style>
 </head>
+
 <body>
   <main class="card">
     <div class="top">
       <h1>Мне скучно</h1>
 
-      <!-- Текст 1 -->
-      <p>Выбери режимы (по желанию) и нажми кнопку - выпадет случайное занятие.</p>
+      <!-- Поле видно сразу -->
+      <input
+        id="resultField"
+        class="resultInput"
+        type="text"
+        placeholder="Нажми кнопку, и тут появится идея"
+        readonly
+        aria-live="polite"
+      />
 
-      <!-- Кнопка строго между двумя надписями -->
-      <div class="row">
+      <p class="subtitle">Выбери режимы (по желанию) и нажми кнопку - выпадет случайное занятие.</p>
+
+      <!-- больше расстояния сверху/снизу -->
+      <div class="spacerBig"></div>
+
+      <div class="btnWrap">
         <button id="btn" class="primary" type="button">Чем мне заняться?</button>
       </div>
 
-      <!-- Текст 2 -->
-      <div class="hint">Можно нажать <kbd>Enter</kbd> или <kbd>Space</kbd>, когда кнопка в фокусе</div>
+      <div class="spacerBig"></div>
 
-      <div id="result" class="result" aria-live="polite"></div>
+      <div class="hint">Можно нажать <kbd>Enter</kbd> или <kbd>Space</kbd>, когда кнопка в фокусе</div>
     </div>
 
     <section class="panel">
-      <h2>Режимы</h2>
-      <div id="chips" class="chips" role="group" aria-label="Режимы (фильтры)"></div>
-      <div class="muted" style="margin-top:10px; text-align:center;">
-        Можно включить несколько режимов сразу. Выпадут идеи, которые подходят всем выбранным режимам.
+      <h2 class="panelTitle">Режимы</h2>
+      <div id="chips" class="chipsGrid" role="group" aria-label="Режимы (фильтры)"></div>
+      <div class="muted">
+        Логика исправлена: идеи "С питомцем / С друзьями / Со второй половинкой" появляются только если выбран этот режим.
       </div>
     </section>
 
+    <!-- "Свои идеи" убрали, как ты просила. Тут можно вставить ссылку на Google Form позже -->
     <section class="panel">
-      <h2>Свои идеи</h2>
-      <div class="grid">
-        <div>
-          <label for="ideaText">Текст идеи</label>
-          <textarea id="ideaText" placeholder="Например: «Сделать бумажный самолетик и запустить»"></textarea>
-
-          <label>Теги (режимы), которые подходят этой идее</label>
-          <div id="tagChips" class="chips" role="group" aria-label="Теги идеи"></div>
-
-          <div class="actions" style="margin-top:10px">
-            <button id="addIdea" class="secondary" type="button">Добавить идею</button>
-            <button id="clearIdeas" class="secondary danger" type="button" title="Удалит только твои идеи">Удалить мои идеи</button>
-          </div>
-
-          <div class="muted" style="margin-top:10px">
-            Идеи сохраняются в этом браузере (localStorage). На другом устройстве список будет отдельный.
-            Быстро добавить: <kbd>Ctrl</kbd> + <kbd>Enter</kbd>.
-          </div>
-        </div>
-
-        <div>
-          <label for="sourceMode">Что использовать при генерации</label>
-          <select id="sourceMode">
-            <option value="all">И встроенные, и мои идеи</option>
-            <option value="custom">Только мои идеи</option>
-            <option value="builtin">Только встроенные</option>
-          </select>
-
-          <label for="customCount">Моих идей сейчас</label>
-          <input id="customCount" type="text" value="0" readonly />
-
-          <label for="activeFilters">Выбрано режимов</label>
-          <input id="activeFilters" type="text" value="0" readonly />
-
-          <div class="muted" style="margin-top:10px">
-            Если по выбранным режимам нет совпадений - выключи один режим или добавь свои идеи с нужными тегами.
-          </div>
-        </div>
+      <h2 class="panelTitle">Добавить свои идеи</h2>
+      <div class="muted">
+        Тут будет Google Form. Когда дашь ссылку на форму - я вставлю ее красиво кнопкой.
       </div>
     </section>
 
@@ -231,12 +235,14 @@
   </main>
 
   <script>
-    // ====== РЕЖИМЫ (теги) ======
+    // ====== РЕЖИМЫ ======
     // Переименовано: "Прокачка" -> "Саморазвитие", "Спокойно" -> "Релакс"
-    // Добавлены: "Хобби", "В интернете", "С друзьями", "Со второй половинкой", "С питомцем"
+    // Добавлены: Хобби, В интернете, С друзьями, Со второй половинкой, С питомцем
     const TAGS = [
       { id: "home",     label: "Дома" },
       { id: "outside",  label: "На улице" },
+      { id: "online",   label: "В интернете" },
+
       { id: "short",    label: "На 5 минут" },
       { id: "free",     label: "Без денег" },
       { id: "creative", label: "Творчество" },
@@ -244,235 +250,163 @@
       { id: "relax",    label: "Релакс" },
       { id: "learn",    label: "Саморазвитие" },
       { id: "hobby",    label: "Хобби" },
-      { id: "online",   label: "В интернете" },
+
       { id: "friends",  label: "С друзьями" },
       { id: "couple",   label: "Со второй половинкой" },
       { id: "pet",      label: "С питомцем" }
     ];
 
-    // ====== ВСТРОЕННЫЕ ИДЕИ (с тегами) ======
-    // Добавлено еще 25 идей (всего стало заметно больше).
-    const builtInIdeas = [
-      // Старые + обновленные теги
+    // Эти теги считаем "особенными": если идея помечена таким тегом,
+    // она НЕ должна выпадать, пока пользователь явно не выберет режим.
+    const GATED_TAGS = new Set(["pet", "friends", "couple"]);
+
+    // "Локации" - чтобы не было странных совпадений типа "Дома" + "Прогуляться"
+    // Если выбрана локация, идеи должны соответствовать выбранной локации.
+    const LOCATION_TAGS = new Set(["home", "outside", "online"]);
+
+    // ====== ИДЕИ ======
+    // Я оставил много идей и поправил теги, чтобы не было нелогичных пересечений.
+    const IDEAS = [
+      // Дома
       { text: "Почитать книгу 15-20 минут", tags: ["home","relax","learn","free"] },
       { text: "Слепить из пластилина что-нибудь смешное", tags: ["home","creative","hobby"] },
-      { text: "Сделать 10-20 приседаний и растяжку", tags: ["home","short","active","free"] },
-      { text: "Послушать новый альбом или плейлист", tags: ["home","relax","free","online"] },
-      { text: "Посмотреть короткий документальный ролик", tags: ["home","relax","learn","free","online"] },
       { text: "Нарисовать 5-минутный скетч (что угодно)", tags: ["home","short","creative","free","hobby"] },
-      { text: "Навести порядок на одном маленьком участке (стол или полка)", tags: ["home","short","free"] },
+      { text: "Навести порядок на одном участке (стол или полка)", tags: ["home","short","free"] },
       { text: "Сделать чай или какао и устроить уютную паузу", tags: ["home","relax"] },
-      { text: "Выучить 10 новых слов (любой язык)", tags: ["home","short","learn","free","online"] },
+      { text: "Сделать растяжку 7 минут", tags: ["home","active","short","free"] },
+      { text: "Устроить мини-дневник: 3 хороших события за день", tags: ["home","relax","free","learn"] },
       { text: "Собрать пазл или конструктор", tags: ["home","relax","hobby"] },
+      { text: "Разобрать галерею: удалить 30 лишних фото", tags: ["home","short","free"] },
+      { text: "Сделать 10-минутную уборку под музыку", tags: ["home","active","free"] },
+      { text: "Составить список дел на завтра, чтобы стало легче", tags: ["home","short","learn","free"] },
       { text: "Написать мини-историю на 5 предложений", tags: ["home","short","creative","free"] },
-      { text: "Фото-челлендж: сделай 5 необычных кадров дома", tags: ["home","creative","free"] },
-      { text: "Прогуляться 10-15 минут", tags: ["outside","active","free","short"] },
-      { text: "Послушать подкаст на прогулке", tags: ["outside","relax","learn","free","online"] },
-      { text: "Поставить мини-цель на день и сделать первый шаг", tags: ["home","short","learn","free"] },
-      { text: "Медитация на 3 минуты", tags: ["home","short","relax","free"] },
-      { text: "Уборка 20 минут под музыку", tags: ["home","active","free"] },
-      { text: "Посмотреть 1 лекцию или выступление на интересную тему", tags: ["home","relax","learn","free","online"] },
+      { text: "Сделать бумажный самолетик и проверить дальность полета", tags: ["home","creative","short","free","hobby"] },
+      { text: "Сделать 10-20 приседаний и 1 минуту планки", tags: ["home","short","active","free"] },
+      { text: "Потренировать осанку 5 минут (плечи назад, шея ровно)", tags: ["home","short","learn","free"] },
 
-      // +25 новых идей
-      { text: "Сделать лист желаний: 10 вещей, которые хочешь в этом году", tags: ["home","learn","free","relax"] },
+      // На улице
+      { text: "Прогуляться 10-15 минут", tags: ["outside","active","free","short"] },
+      { text: "Сделать мини-квест: найти 5 красивых деталей вокруг", tags: ["outside","relax","free","short"] },
+      { text: "Пройтись без телефона 10 минут и просто смотреть вокруг", tags: ["outside","relax","free","short"] },
+      { text: "Сделать 10 фото природы/города с необычными ракурсами", tags: ["outside","creative","free","hobby"] },
+      { text: "Легкая пробежка или быстрый шаг 8 минут", tags: ["outside","active","free","short"] },
+
+      // В интернете
+      { text: "Посмотреть короткий документальный ролик", tags: ["online","relax","learn","free"] },
+      { text: "Послушать подкаст на интересную тему", tags: ["online","relax","learn","free"] },
       { text: "Сыграть в короткую игру в браузере", tags: ["online","relax","short"] },
-      { text: "Построить бумажный самолетик и устроить мини-соревнование", tags: ["home","creative","short","free","hobby"] },
-      { text: "Сделать 5-минутную зарядку для шеи и спины", tags: ["home","short","active","free"] },
-      { text: "Составить список фильмов или сериалов 'на потом'", tags: ["home","relax","free","online"] },
-      { text: "Попробовать новое блюдо или простой рецепт", tags: ["home","hobby"] },
-      { text: "Разобрать фото в телефоне: удалить 30 лишних", tags: ["home","short","free"] },
-      { text: "Сделать коллаж или обои из своих фото", tags: ["home","creative","online","hobby"] },
-      { text: "Написать сообщение другу: 'Как ты?'", tags: ["friends","online","free","short"] },
+      { text: "Пройти веселый квиз или тест", tags: ["online","relax","short"] },
+      { text: "Выучить 10 новых слов (любая тема)", tags: ["online","short","learn","free"] },
+      { text: "Найти 1 новый навык и изучить 10 минут (видео/статья)", tags: ["online","learn","short","free"] },
+      { text: "Собрать плейлист под настроение", tags: ["online","relax","hobby"] },
+      { text: "Найти простой туториал и повторить (рисование/рукоделие)", tags: ["online","creative","hobby","learn"] },
+
+      // Универсальные (без локации)
+      { text: "Составить список желаний: 10 вещей, которые хочешь", tags: ["relax","learn","free"] },
+      { text: "Сделать 5 минут дыхания: вдох 4, выдох 6", tags: ["relax","short","free"] },
+      { text: "Поставить мини-цель на день и сделать первый шаг", tags: ["learn","short","free"] },
+      { text: "Послушать музыку и просто полежать 10 минут", tags: ["relax"] },
+
+      // GATED: С питомцем (появятся только если выбран режим pet)
+      { text: "Поиграть с питомцем 10 минут (мячик/веревочка)", tags: ["pet","active","short"] },
+      { text: "Сделать питомцу простую игрушку из безопасных материалов", tags: ["pet","creative","free","hobby"] },
+      { text: "Научить питомца одной простой команде (если возможно)", tags: ["pet","learn","short"] },
+      { text: "Прогуляться с питомцем 10-15 минут", tags: ["pet","outside","active","free"] },
+
+      // GATED: С друзьями
+      { text: "Написать другу: 'Как ты? Давай созвонимся на 10 минут'", tags: ["friends","online","free","short"] },
       { text: "Устроить мини-викторину с друзьями", tags: ["friends","online","relax"] },
-      { text: "Сыграть с друзьями в 'Правда или действие' (мягкая версия)", tags: ["friends","relax"] },
-      { text: "Сделать совместный плейлист с друзьями", tags: ["friends","online","relax"] },
-      { text: "Придумать 3 идеи для свидания и предложить одну", tags: ["couple","relax","online"] },
-      { text: "Сыграть со второй половинкой в настолку или карточную игру", tags: ["couple","home","relax","hobby"] },
-      { text: "Приготовить вместе напиток и устроить дегустацию", tags: ["couple","home","relax"] },
-      { text: "Снять короткое смешное видео на 10 секунд", tags: ["creative","online","friends","couple"] },
-      { text: "Поиграть с питомцем 10 минут (палочка, мячик, веревочка)", tags: ["pet","home","active","short"] },
-      { text: "Сделать питомцу простую игрушку из безопасных материалов", tags: ["pet","home","creative","free"] },
-      { text: "Выучить новый жест или связку танцев на 30 секунд", tags: ["home","active","online","hobby"] },
-      { text: "Начать мини-дневник: 3 пункта 'что было хорошего сегодня'", tags: ["home","relax","free","learn"] },
-      { text: "Послушать ASMR или звуки дождя 10 минут", tags: ["home","relax","online"] },
-      { text: "Порисовать по референсу из интернета 10 минут", tags: ["home","creative","online","hobby"] },
-      { text: "Сделать мини-план саморазвития на неделю: 1 навык, 3 шага", tags: ["home","learn","free"] },
-      { text: "Пройти короткий тест или квиз (для развлечения)", tags: ["online","relax","short"] },
-      { text: "Выйти на улицу и найти 5 красивых деталей вокруг (мини-квест)", tags: ["outside","relax","free","short"] },
-      { text: "Покататься на велосипеде или самокате (если есть возможность)", tags: ["outside","active","hobby"] },
-      { text: "Сделать растяжку ног 7 минут", tags: ["home","active","short","free"] },
-      { text: "Начать собирать список хобби, которые хочется попробовать", tags: ["home","learn","free","hobby"] },
-      { text: "Собрать маленький 'набор радости': музыка, вкусняшка, плед", tags: ["home","relax"] },
-      { text: "Сделать 10-минутную прогулку без телефона", tags: ["outside","relax","free","short"] },
-      { text: "Поиграть в 'угадай мелодию' (сам или с друзьями)", tags: ["online","friends","relax"] },
-      { text: "Составить список покупок/дел, чтобы завтра было легче", tags: ["home","learn","free","short"] },
-      { text: "Освоить 1 горячую клавишу или фишку в любимом приложении", tags: ["online","learn","short"] }
+      { text: "Сделать совместный плейлист с друзьями", tags: ["friends","online","relax","hobby"] },
+      { text: "Сыграть с друзьями в настолку или карточную игру", tags: ["friends","relax","hobby"] },
+
+      // GATED: Со второй половинкой
+      { text: "Придумать 3 идеи для свидания и выбрать одну", tags: ["couple","relax"] },
+      { text: "Сыграть вместе в игру (настолка/карты/видео)", tags: ["couple","relax","hobby"] },
+      { text: "Сделать вместе чай/какао и устроить разговор без телефонов", tags: ["couple","relax"] }
     ];
 
-    // ====== LOCALSTORAGE ======
-    const LS_KEY = "bored_custom_ideas_v2";
-    function loadCustomIdeas(){
-      try{
-        const raw = localStorage.getItem(LS_KEY);
-        const parsed = raw ? JSON.parse(raw) : [];
-        return Array.isArray(parsed) ? parsed : [];
-      } catch { return []; }
-    }
-    function saveCustomIdeas(arr){
-      localStorage.setItem(LS_KEY, JSON.stringify(arr));
-    }
-    let customIdeas = loadCustomIdeas();
-
-    // ====== UI ======
-    const btn = document.getElementById("btn");
-    const result = document.getElementById("result");
+    // ====== ЛОГИКА ВЫБОРА ======
     const chipsWrap = document.getElementById("chips");
-    const tagChipsWrap = document.getElementById("tagChips");
-    const ideaText = document.getElementById("ideaText");
-    const addIdeaBtn = document.getElementById("addIdea");
-    const clearIdeasBtn = document.getElementById("clearIdeas");
-    const sourceMode = document.getElementById("sourceMode");
-    const customCount = document.getElementById("customCount");
-    const activeFilters = document.getElementById("activeFilters");
+    const btn = document.getElementById("btn");
+    const resultField = document.getElementById("resultField");
 
-    // Выбранные фильтры
     const activeTagSet = new Set();
-    // Выбранные теги для новой идеи
-    const newIdeaTagSet = new Set();
-
-    // Чтобы не повторялось подряд (по тексту)
     let lastText = "";
 
-    function renderChips(container, selectedSet, onToggle){
-      container.innerHTML = "";
-      TAGS.forEach(t => {
+    function renderChips(){
+      chipsWrap.innerHTML = "";
+      for (const t of TAGS){
         const el = document.createElement("button");
         el.type = "button";
         el.className = "chip";
-        el.setAttribute("aria-pressed", selectedSet.has(t.id) ? "true" : "false");
         el.textContent = t.label;
+        el.setAttribute("aria-pressed", activeTagSet.has(t.id) ? "true" : "false");
 
         el.addEventListener("click", () => {
-          if (selectedSet.has(t.id)) selectedSet.delete(t.id);
-          else selectedSet.add(t.id);
+          if (activeTagSet.has(t.id)) activeTagSet.delete(t.id);
+          else activeTagSet.add(t.id);
 
-          el.setAttribute("aria-pressed", selectedSet.has(t.id) ? "true" : "false");
-          onToggle?.();
+          el.setAttribute("aria-pressed", activeTagSet.has(t.id) ? "true" : "false");
         });
 
-        container.appendChild(el);
-      });
-    }
-
-    function updateCounters(){
-      customCount.value = String(customIdeas.length);
-      activeFilters.value = String(activeTagSet.size);
-    }
-
-    function matchesAllTags(ideaTags, requiredSet){
-      for (const tag of requiredSet){
-        if (!ideaTags.includes(tag)) return false;
+        chipsWrap.appendChild(el);
       }
+    }
+
+    function matchesFilters(idea){
+      const tags = idea.tags || [];
+
+      // 1) GATED теги: если идея про питомца/друзей/пару - показываем ТОЛЬКО если выбран соответствующий режим
+      for (const gated of GATED_TAGS){
+        if (tags.includes(gated) && !activeTagSet.has(gated)) return false;
+      }
+
+      // 2) Локации: если пользователь выбрал одну или несколько локаций, идея должна соответствовать
+      // (Если локации не выбраны - локацию не требуем)
+      const chosenLocations = [...activeTagSet].filter(t => LOCATION_TAGS.has(t));
+      if (chosenLocations.length > 0){
+        // идея подходит, если она содержит хотя бы одну выбранную локацию
+        const ok = chosenLocations.some(loc => tags.includes(loc));
+        if (!ok) return false;
+      }
+
+      // 3) Остальные выбранные теги (кроме локаций) - строгий AND
+      for (const t of activeTagSet){
+        if (LOCATION_TAGS.has(t)) continue; // локации уже проверили
+        if (!tags.includes(t)) return false;
+      }
+
       return true;
     }
 
-    function getPool(){
-      const mode = sourceMode.value;
-      let pool = [];
+    function pickIdea(){
+      const pool = IDEAS.filter(matchesFilters);
 
-      if (mode === "all" || mode === "builtin") pool = pool.concat(builtInIdeas.map(x => ({...x, source:"builtin"})));
-      if (mode === "all" || mode === "custom") pool = pool.concat(customIdeas.map(x => ({...x, source:"custom"})));
-
-      if (activeTagSet.size > 0){
-        pool = pool.filter(item => matchesAllTags(item.tags || [], activeTagSet));
+      if (pool.length === 0){
+        return "Нет идей под выбранные режимы. Попробуй снять один режим или выбрать другой.";
       }
-      return pool;
-    }
 
-    function pickRandom(pool){
-      if (pool.length === 0) return null;
-
-      let item = null;
+      // избегаем повтора подряд
       let tries = 0;
-
       while (tries < 12){
-        const i = Math.floor(Math.random() * pool.length);
-        item = pool[i];
+        const item = pool[Math.floor(Math.random() * pool.length)];
         if (pool.length === 1 || item.text !== lastText){
           lastText = item.text;
-          return item;
+          return item.text;
         }
         tries++;
       }
-
       const fallback = pool[Math.floor(Math.random() * pool.length)];
       lastText = fallback.text;
-      return fallback;
-    }
-
-    function show(text){
-      result.textContent = text;
-      result.classList.remove("show");
-      void result.offsetWidth;
-      result.classList.add("show");
+      return fallback.text;
     }
 
     function showIdea(){
-      const pool = getPool();
-      const picked = pickRandom(pool);
-
-      if (!picked){
-        if (activeTagSet.size > 0){
-          show("Нет идей под выбранные режимы. Выключи один режим или добавь свои идеи с нужными тегами.");
-        } else {
-          show("Список идей пуст. Добавь свои идеи ниже.");
-        }
-        return;
-      }
-
-      // ВАЖНО: теги после текста НЕ показываем (как ты просила)
-      show(picked.text);
+      resultField.value = pickIdea();
     }
 
-    function addIdea(){
-      const text = (ideaText.value || "").trim();
-      if (!text){
-        show("Напиши текст идеи в поле ниже.");
-        return;
-      }
-
-      const tags = [...newIdeaTagSet];
-      const newItem = { text, tags };
-
-      customIdeas.unshift(newItem);
-      saveCustomIdeas(customIdeas);
-
-      ideaText.value = "";
-      newIdeaTagSet.clear();
-      renderChips(tagChipsWrap, newIdeaTagSet, updateCounters);
-      updateCounters();
-      show("Добавлено! Нажми кнопку и получи идею.");
-    }
-
-    function clearCustomIdeas(){
-      customIdeas = [];
-      saveCustomIdeas(customIdeas);
-      updateCounters();
-      show("Твои идеи удалены. Встроенные остались.");
-    }
-
-    // Инициализация
-    renderChips(chipsWrap, activeTagSet, updateCounters);
-    renderChips(tagChipsWrap, newIdeaTagSet, updateCounters);
-    updateCounters();
-
+    renderChips();
     btn.addEventListener("click", showIdea);
-    addIdeaBtn.addEventListener("click", addIdea);
-    clearIdeasBtn.addEventListener("click", clearCustomIdeas);
-
-    ideaText.addEventListener("keydown", (e) => {
-      if (e.ctrlKey && e.key === "Enter") addIdea();
-    });
   </script>
 </body>
 </html>
