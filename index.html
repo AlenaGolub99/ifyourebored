@@ -22,12 +22,10 @@
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='50' x='10' font-size='44'%3E%F0%9F%92%A1%3C/text%3E%3C/svg%3E" />
 
-  <!-- основной шрифт (НЕ Roboto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- Besom2 только для заголовка: положи файл сюда /fonts/Besom2.ttf -->
   <style>
     @font-face{
       font-family: "Besom2";
@@ -54,6 +52,47 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Что делать, если мне скучно?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Нажми кнопку \"Чем мне заняться?\" - выпадет случайная идея. Для точных вариантов выбери режимы: дома, на улице, в интернете, релакс, активность, творчество, саморазвитие, хобби и другие."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как работают режимы?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Режимы - это фильтры. Можно выбрать один или несколько. Например: Дома + Релакс или На улице + Активность. Режимы \"На улице\" и \"В интернете\" взаимоисключающие."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Почему иногда не выпадает идея?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Если включено слишком много режимов, подходящих идей может не остаться. Сними один режим или нажми \"Сбросить режимы\"."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Можно ли предложить свою идею?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Да. По ссылке на Google Форму можно отправить свою идею, и она может появиться в генераторе позже."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     :root{
       --bg:#0b1220;
@@ -75,7 +114,8 @@
       min-height:100vh;
       display:grid;
       place-items:center;
-      padding: 26px 14px 92px;
+  
+      padding: 26px 14px 128px;
       background:
         radial-gradient(1100px 560px at 50% 18%, #1a2a55 0%, var(--bg) 56%),
         radial-gradient(760px 460px at 20% 92%, rgba(124,92,255,0.14), transparent 55%),
@@ -154,8 +194,6 @@
       padding: 24px 20px 20px;
       text-align:center;
     }
-
-    /* Besom2 только тут */
     h1{
       margin:0;
       font-family: "Besom2", "Montserrat", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
@@ -203,7 +241,6 @@
       gap: 10px;
     }
 
-    /* одна ширина для кнопки и поля */
     .controlW{
       width: min(420px, 100%);
       margin: 0 auto;
@@ -225,6 +262,8 @@
       overflow:hidden;
       width: 100%;
       display:block;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     button.primary::after{
       content:"";
@@ -314,7 +353,6 @@
       font-weight: 500;
     }
 
-    /* РЕЖИМЫ */
     .chips{
       display:flex;
       flex-wrap:wrap;
@@ -322,7 +360,7 @@
       justify-content:center;
       align-items:center;
       margin-top: 8px;
-      min-height: 44px; /* чтобы не “прыгало” */
+      min-height: 44px;
     }
 
     .chip{
@@ -346,6 +384,8 @@
       overflow:hidden;
       white-space: nowrap;
       max-width: 100%;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     .chip::after{
       content:"";
@@ -374,7 +414,6 @@
       filter: brightness(1.10);
     }
 
-    /* Сброс внизу и красный */
     .resetRow{
       display:flex;
       justify-content:center;
@@ -394,6 +433,8 @@
       box-shadow: 0 14px 40px rgba(255,74,74,0.16);
       overflow:hidden;
       transition: transform .12s ease, filter .18s ease, box-shadow .18s ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     .resetBtn::after{
       content:"";
@@ -446,6 +487,8 @@
       color: rgba(232,238,252,0.92);
       overflow:hidden;
       transition: transform .12s ease, filter .18s ease, border-color .18s ease, background .18s ease;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     a.linkBtn::after{
       content:"";
@@ -483,13 +526,14 @@
       border-bottom: 1px dashed rgba(55,198,255,0.5);
     }
 
-    /* Boosty плавашка */
     .donateBar{
       position: fixed;
+      left: 14px;
       right: 14px;
-      bottom: 14px;
+      bottom: calc(14px + env(safe-area-inset-bottom));
       z-index: 9999;
-      width: min(340px, calc(100vw - 28px));
+      margin: 0 auto;
+      width: min(360px, calc(100vw - 28px));
       background: rgba(16,26,51,0.92);
       border: 1px solid rgba(255,255,255,0.10);
       border-radius: 18px;
@@ -533,6 +577,8 @@
       font-size: 16px;
       line-height: 32px;
       text-align:center;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     .donateRow{
       margin-top: 10px;
@@ -559,6 +605,8 @@
       color: rgba(232,238,252,0.92);
       overflow:hidden;
       white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
     .boostyBtn::after{
       content:"";
@@ -577,6 +625,10 @@
     .boostyBtn:hover::after{ transform: translateX(55%) rotate(12deg); }
     .boostyBtn:hover{ filter: brightness(1.05); }
     .buyText{ color: rgba(232,238,252,0.72); font-size: 12px; font-weight: 600; white-space: nowrap; }
+
+    @media (max-width: 420px){
+      .buyText{ white-space: normal; }
+    }
   </style>
 </head>
 
@@ -590,7 +642,7 @@
   <div class="wrap">
     <header>
       <h1>Мне скучно!</h1>
-      <p class="lead">Нажми кнопку и получи случайную идею. Можно выбрать режимы, чтобы было точнее.</p>
+      <p class="lead">Нажми кнопку и получи случайную идею. Можешь выбрать один или несколько режимов.</p>
     </header>
 
     <main>
@@ -610,17 +662,16 @@
           ></textarea>
         </div>
 
-        <p class="hint">Можно нажать <kbd>Enter</kbd> или <kbd>Space</kbd>, когда кнопка в фокусе</p>
+        <p class="hint">Можешь нажать <kbd>Enter</kbd> или <kbd>Space</kbd>, когда кнопка в фокусе</p>
       </section>
 
       <section class="card" aria-label="Режимы">
         <div class="panelHead">
           <h2>Режимы</h2>
-          <p class="subtitle">Выбери режимы (по желанию) и нажми кнопку - выпадет случайное занятие.</p>
+          <p class="subtitle">Нажми кнопку - выпадет случайное занятие.</p>
         </div>
 
-        <!-- ВАЖНО: режимы рисуются сюда -->
-        <div id="chips" class="chips" role="group" aria-label="Режимы (фильтры)"></div>
+        <div id="chips" class="chips" role="group" aria-label="Режимы"></div>
 
         <div class="resetRow">
           <button id="resetBtn" class="resetBtn" type="button">Сбросить режимы</button>
@@ -643,21 +694,41 @@
           </a>
         </div>
       </section>
-
-      <section class="card" aria-label="Описание и FAQ">
+      
+      <section class="card" aria-label="Идеи и подсказки">
         <div class="panelHead">
           <h2>Идеи, чем заняться, когда скучно</h2>
-          <p class="subtitle">Текст для индексации и для тех, кто пришел из поиска.</p>
+          <p class="subtitle">Подборка идей и быстрых способов найти интересное занятие за пару секунд.</p>
         </div>
 
         <div style="display:grid; gap:10px; color: rgba(232,238,252,0.86); font-size:14px; font-weight:500;">
           <p>
-            Этот сайт помогает быстро придумать, чем заняться, когда скучно: дома, на улице или в интернете.
-            Режимы работают как фильтры: релакс, активность, творчество, хобби, саморазвитие, без денег, на 5 минут.
+            Если ты не знаешь, <strong> чем заняться </strong> - этот сайт накидает сотню разных идей.
+            Генератор идей подходит для разных ситуаций: <strong>дома</strong>, <strong>на улице</strong> или <strong>в интернете</strong>.
+            Можно включить режимы: <strong>релакс</strong>, <strong>активность</strong>, <strong>творчество</strong>, <strong>саморазвитие</strong>,
+            <strong>хобби</strong>, <strong>без денег</strong> и <strong>на 5 минут</strong>.
           </p>
+
           <p>
-            Если включено слишком много режимов и идей не осталось, сними один фильтр или нажми "Сбросить режимы".
+            Частые запросы, по которым сюда заходят: <em>что делать когда скучно</em>, <em>чем заняться дома</em>,
+            <em>чем заняться без денег</em>, <em>чем заняться вечером</em>, <em>идеи для хобби</em>, <em>как расслабиться</em>,
+            <em>идеи для саморазвития</em>, <em>занятия на улице</em>, <em>чем заняться в интернете</em>.
           </p>
+
+          <p>
+            Режимы работают как фильтры. Например, "Дома + Релакс" - если хочешь спокойно отдохнуть, или "На улице + Активность", если хочется заняться чем-то активным и подышать свежим воздухом.
+            Если включено слишком много режимов и идей не осталось - сними один фильтр или нажми "Сбросить режимы".
+          </p>
+
+          <div style="border-top: 1px solid rgba(255,255,255,0.10); padding-top:10px; margin-top:4px;">
+            <p style="margin:0 0 8px;">Быстрые ответы:</p>
+            <ul style="margin:0; padding-left:18px; display:grid; gap:6px;">
+              <li><strong>Скучно дома</strong> - выбери "Дома" и нажми кнопку.</li>
+              <li><strong>Не знаешь, чем заняться на улице</strong> - выбери "На улице" и "Активность" или "Релакс".</li>
+              <li><strong>Нечего делать в интернете</strong> - выбери "В интернете" и нажми кнопку.</li>
+              <li><strong>Хочешь что-то полезное</strong> - выбери "Саморазвитие".</li>
+            </ul>
+          </div>
         </div>
       </section>
     </main>
@@ -672,7 +743,7 @@
     <div class="donateTop">
       <div>
         <p class="donateTitle">Поддержать ☕</p>
-        <p class="donateText">Если сайт помог, можешь закинуть донат.</p>
+        <p class="donateText">Если сайт помог, можешь закинуть донат)</p>
       </div>
       <button class="donateClose" id="donateClose" type="button" aria-label="Закрыть">×</button>
     </div>
@@ -684,7 +755,6 @@
   </aside>
 
   <script>
-    // Чтобы “режимы” точно появлялись — ждём DOM
     document.addEventListener("DOMContentLoaded", () => {
       const TAGS = [
         { id: "home",     label: "Дома",               c1: "rgba(124,92,255,0.35)", c2: "rgba(124,92,255,0.10)" },
@@ -707,7 +777,6 @@
       const GATED_TAGS = new Set(["pet", "friends", "couple"]);
       const LOCATION_TAGS = new Set(["home", "outside", "online"]);
 
-      // взаимоисключение: outside <-> online
       const MUTUAL_EXCLUSIVE = {
         outside: new Set(["online"]),
         online: new Set(["outside"])
@@ -733,7 +802,72 @@
 
         { text: "Поиграть с питомцем 10 минут (мячик или веревочка)", tags: ["pet","active","short"] },
         { text: "Написать другу: 'Как ты?'", tags: ["friends","online","free","short"] },
-        { text: "Мини-свидание дома: чай и разговор без телефонов", tags: ["couple","home","relax"] }
+        { text: "Мини-свидание дома: чай и разговор без телефонов", tags: ["couple","home","relax"] },
+
+        /* ===== +50 новых идей ===== */
+        { text: "Сделать уборку на 5 минут по таймеру", tags: ["home","short","free"] },
+        { text: "Протереть экран телефона и чехол (быстро и приятно)", tags: ["home","short","free"] },
+        { text: "Составить список из 10 вещей, за которые ты благодарна", tags: ["home","relax","learn","free"] },
+        { text: "Написать себе письмо на будущий месяц", tags: ["home","relax","learn","free"] },
+        { text: "Сделать мини-зарядку: 10 приседаний + 10 наклонов", tags: ["home","active","short","free"] },
+        { text: "Разобрать один ящик/полку (маленький участок)", tags: ["home","free"] },
+        { text: "Пересмотреть фото и удалить 20 лишних", tags: ["home","online","short","free"] },
+        { text: "Сделать простую маску/уход: крем, бальзам, вода", tags: ["home","relax"] },
+        { text: "Послушать 3 любимые песни подряд", tags: ["home","relax","free"] },
+        { text: "Сделать чай/кофе и выпить его без телефона", tags: ["home","relax"] },
+
+        { text: "Собрать мини-пазл/головоломку (если есть)", tags: ["home","hobby","relax"] },
+        { text: "Выучить 5 слов на новом языке", tags: ["home","learn","short","free"] },
+        { text: "Сделать 10 минут йоги для спины", tags: ["home","active","relax","free"] },
+        { text: "Пересадить/полить растения (если есть)", tags: ["home","relax","hobby"] },
+        { text: "Сделать бутерброд/перекус и красиво подать", tags: ["home","creative","relax"] },
+        { text: "Придумать смешной ник/название для заметки", tags: ["home","creative","short","free"] },
+        { text: "Нарисовать комикс из 3 кадров", tags: ["home","creative","hobby","free"] },
+        { text: "Сделать оригами из листа бумаги", tags: ["home","creative","hobby","free"] },
+        { text: "Потренировать почерк: 3 строки красиво", tags: ["home","learn","relax","free"] },
+        { text: "Собрать плейлист под настроение", tags: ["home","online","relax","free"] },
+
+        { text: "Сделать мини-фото-сессию предметов дома (эстетика)", tags: ["home","creative","hobby"] },
+        { text: "Посмотреть 1 короткий урок по рисованию", tags: ["online","creative","learn","free"] },
+        { text: "Найти новый рецепт и сохранить в закладки", tags: ["online","learn","free","short"] },
+        { text: "Пройти быстрый тест/квиз на интересную тему", tags: ["online","relax","short","free"] },
+        { text: "Почитать статью про привычки или продуктивность", tags: ["online","learn","free"] },
+        { text: "Посмотреть обзор на хобби, которое давно хотела", tags: ["online","learn","hobby","free"] },
+        { text: "Скачать аудиокнигу/подкаст и включить на 10 минут", tags: ["online","relax","learn","free"] },
+        { text: "Сделать 'цифровую уборку': папка Загрузки", tags: ["online","short","free"] },
+        { text: "Выучить 1 горячую клавишу на ПК/телефоне", tags: ["online","learn","short","free"] },
+        { text: "Найти 3 новых канала/блога по твоей теме", tags: ["online","hobby","free"] },
+
+        { text: "Прогуляться и посчитать 10 красных предметов вокруг", tags: ["outside","relax","short","free"] },
+        { text: "Сделать 15 минут быстрой ходьбы", tags: ["outside","active","free"] },
+        { text: "Сесть на лавочку и просто наблюдать 5 минут", tags: ["outside","relax","short","free"] },
+        { text: "Сфоткать 5 красивых текстур/деталей города", tags: ["outside","creative","hobby","free"] },
+        { text: "Пройтись новым маршрутом вокруг дома", tags: ["outside","active","free"] },
+        { text: "Послушать музыку на прогулке и пройти 1000 шагов", tags: ["outside","active","relax","free"] },
+        { text: "Зайти в магазин и выбрать 1 новый вкус/продукт", tags: ["outside","hobby"] },
+        { text: "Сделать растяжку на свежем воздухе 5 минут", tags: ["outside","active","short","free"] },
+        { text: "Найти самое спокойное место рядом и посидеть там", tags: ["outside","relax","free"] },
+        { text: "Поймать 'золотой кадр' на камеру (свет/небо)", tags: ["outside","creative","hobby","free"] },
+
+        { text: "Созвониться с другом на 10 минут и обсудить планы", tags: ["friends","online","relax","short","free"] },
+        { text: "Сыграть с друзьями в 'угадай фильм/песню' в чате", tags: ["friends","online","relax","free"] },
+        { text: "Устроить мини-прогулку с друзьями", tags: ["friends","outside","active","free"] },
+        { text: "Сделать с друзьями список 'куда сходить' и выбрать 1 пункт", tags: ["friends","online","learn","free"] },
+
+        { text: "Сделать с любимым(ой) список: 20 совместных желаний", tags: ["couple","home","relax","free"] },
+        { text: "Устроить 'домашнее свидание': фильм + перекус", tags: ["couple","home","relax"] },
+        { text: "Прогулка вдвоём без телефонов 20 минут", tags: ["couple","outside","relax","free"] },
+        { text: "Сделать совместное фото/мини-фотосессию", tags: ["couple","home","creative","hobby"] },
+
+        { text: "Выучить с питомцем простую команду/трюк (если возможно)", tags: ["pet","home","learn","hobby"] },
+        { text: "Сделать питомцу игрушку из подручного (безопасно)", tags: ["pet","home","creative","hobby","free"] },
+        { text: "Прогулка с питомцем в новом месте", tags: ["pet","outside","active","free"] },
+        { text: "Почесать/погладить питомца 5 минут и понаблюдать за ним", tags: ["pet","home","relax","short","free"] },
+
+        { text: "Сделать 3-минутную медитацию с таймером", tags: ["relax","short","free"] },
+        { text: "Составить список дел 'на потом' и убрать 1 пункт", tags: ["learn","free"] },
+        { text: "Попробовать 1 новое хобби-идею (набросок/проба)", tags: ["hobby","creative"] },
+        { text: "Сделать маленькую тренировку: планка 20-30 секунд", tags: ["active","short","free"] }
       ];
 
       const chipsWrap = document.getElementById("chips");
@@ -741,7 +875,6 @@
       const resetBtn = document.getElementById("resetBtn");
       const resultField = document.getElementById("resultField");
 
-      // Если чего-то не нашли — просто выходим, чтобы не ломалось
       if (!chipsWrap || !btn || !resetBtn || !resultField) return;
 
       const activeTagSet = new Set();
@@ -769,7 +902,6 @@
             const turningOn = !activeTagSet.has(t.id);
 
             if (turningOn) {
-              // взаимоисключение
               const excl = MUTUAL_EXCLUSIVE[t.id];
               if (excl){
                 for (const x of excl){
@@ -793,19 +925,16 @@
       function matchesFilters(idea){
         const tags = idea.tags || [];
 
-        // gated: не показываем pet/friends/couple пока режим не включён
         for (const gated of GATED_TAGS){
           if (tags.includes(gated) && !activeTagSet.has(gated)) return false;
         }
 
-        // локации: если выбрана локация — требуем совпадение
         const chosenLocations = [...activeTagSet].filter(t => LOCATION_TAGS.has(t));
         if (chosenLocations.length > 0){
           const ok = chosenLocations.some(loc => tags.includes(loc));
           if (!ok) return false;
         }
 
-        // остальные выбранные теги должны входить в идею
         for (const t of activeTagSet){
           if (LOCATION_TAGS.has(t)) continue;
           if (!tags.includes(t)) return false;
@@ -849,7 +978,6 @@
         resultField.value = pickIdea();
         autoGrow();
         animateResult();
-        // не делаем focus/select -> на телефоне не выделяется/не “копируется”
       }
 
       function resetModes(){
@@ -857,17 +985,15 @@
         for (const b of chipsWrap.querySelectorAll(".chip")){
           setChipPressed(b, false);
         }
-        resultField.value = "Режимы сброшены. Нажми кнопку - и получишь случайную идею 🙂";
+        resultField.value = "Режимы сброшены. Нажми кнопку - и получишь случайную идею)";
         autoGrow();
         animateResult();
       }
 
-      // Рендер и события
       renderChips();
       btn.addEventListener("click", showIdea);
       resetBtn.addEventListener("click", resetModes);
 
-      // клавиатура
       btn.addEventListener("keydown", (e) => {
         if (e.key === "Enter" || e.key === " "){
           e.preventDefault();
@@ -877,7 +1003,6 @@
 
       autoGrow();
 
-      // донат-плашка (без падения, если нет элементов)
       const donateBar = document.getElementById("donateBar");
       const donateClose = document.getElementById("donateClose");
       const DONATE_LS_KEY = "donate_bar_closed_v1";
@@ -894,3 +1019,4 @@
   </script>
 </body>
 </html>
+
